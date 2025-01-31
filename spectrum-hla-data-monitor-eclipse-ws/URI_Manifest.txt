@@ -1,0 +1,13 @@
+# URI Format and DDS QoS Profile
+#
+# /{Partition}/{Topic}/{Data Type}, {HLA Region Profile}
+#
+# HLA region profiles define the QoS params for topics, publishers, subscribers,
+# readers and writers.
+#
+# HLA_REGION_PROFILE_1 - Default QoS settings
+# HLA_REGION_PROFILE_2 -
+# HLA_REGION_PROFILE_3 -
+#
+/*/SolarSystem/orbisoftware.hla_1516e_containers.Objects.SolarSystem_124a7dc86c25491f_Cont.SolarSystem_124a7dc86c25491f_Cont, HLA_REGION_PROFILE_1
+/*/PlanetHasCompletedAnOrbit/orbisoftware.hla_1516e_containers.Interactions.PlanetHasCompletedAnOrbit_3a3be83c4403ab7d_Cont.PlanetHasCompletedAnOrbit_3a3be83c4403ab7d_Cont, HLA_REGION_PROFILE_1

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<settings>
+   <setting>
+      <!-- Shared HLA setting -->
+      <name>RidFile</name>
+      <value>NTF_aviation.rid</value>
+   </setting>
+   <setting>
+      <!-- Shared HLA setting -->
+      <name>FomFile</name>
+      <value>SolarSystemModule.xml</value>
+   </setting>
+   <setting>
+      <!-- Shared HLA setting -->
+      <name>Federation</name>
+      <value>FedName123</value>
+   </setting>
+</settings>
