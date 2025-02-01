@@ -28,7 +28,6 @@ import orbisoftware.hla_tools.spectrum_hla_monitor.HLASamples;
 public class ReceiveQueue {
 	
     private ArrayDeque<HLASamples> deque;
-    private int maxItems = 25;
 
     public ReceiveQueue() {
         deque = new ArrayDeque<>();
@@ -79,10 +78,6 @@ public class ReceiveQueue {
     }
     
     public void pushBack(HLASamples value) {
-    	
-        if (deque.size() >= maxItems) {
-            deque.removeFirst();
-        }
         
         deque.addLast(value);
     }

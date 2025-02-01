@@ -44,7 +44,7 @@ public class ReceiveListGUI implements PropertyChangeListener, ActionListener {
 
    public void propertyChange(PropertyChangeEvent evt) {
 
-      if (evt.getPropertyName().toString().equals("hlaReadEvent")) {
+      if (evt.getPropertyName().toString().equals("hlaReadEvent") && (model.size() < 25)) {
 
          synchronized (receiveQueue) {
 
@@ -53,9 +53,7 @@ public class ReceiveListGUI implements PropertyChangeListener, ActionListener {
 
             HLASamples samples = (HLASamples) evt.getNewValue();
 
-            // Save up to 25 samples
-            if (model.size() < 25)
-               model.addElement("TimeStamp: " + Long.toString(samples.sampleReadTime));
+            model.addElement("TimeStamp: " + Long.toString(samples.sampleReadTime));
          }
       }
    }
