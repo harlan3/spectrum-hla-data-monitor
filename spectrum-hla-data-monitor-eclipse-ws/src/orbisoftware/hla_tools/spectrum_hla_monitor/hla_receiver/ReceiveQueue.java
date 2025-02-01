@@ -81,4 +81,9 @@ public class ReceiveQueue {
         
         deque.addLast(value);
     }
+    
+    public void clear() {
+       
+       deque.clear();
+    }
 }

@@ -61,6 +61,7 @@ public class ReceiveListGUI implements PropertyChangeListener, ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 	   
-		model.clear();
+	   receiveQueue.clear();
+	   model.clear();
 	}
 }
