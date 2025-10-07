@@ -68,7 +68,7 @@ public class PublishPlanetHasCompletedAnOrbit {
       try {
          interactionHandle = rtiAmb.getInteractionClassHandle(planetHasCompletedAnOrbit.getFullyQualifiedInteractionName());
          rtiAmb.publishInteractionClass(interactionHandle);
-
+         planetHasCompletedAnOrbit.initialize(rtiAmb);
       } catch (Exception e) {
          e.printStackTrace();
       }

@@ -22,6 +22,7 @@
 package orbisoftware.hlatools.spectrumhlamonitor.hla_sender;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import hla.rti1516e.AttributeHandleValueMap;
 import hla.rti1516e.AttributeRegionAssociation;
@@ -29,6 +30,9 @@ import hla.rti1516e.AttributeSetRegionSetPairList;
 import hla.rti1516e.ObjectInstanceHandle;
 import hla.rti1516e.RTIambassador;
 import hla.rti1516e.RegionHandleSet;
+import orbisoftware.hla_1516e_containers.Common.PrefixedStringLength.HLAASCIIstringImp_Cont;
+import orbisoftware.hla_1516e_containers.Interactions.PlanetHasCompletedAnOrbit_3a3be83c4403ab7d_Cont.PlanetHasCompletedAnOrbit_3a3be83c4403ab7d_Cont;
+import orbisoftware.hla_1516e_encoding.Common.Enums.PlanetOrdinal_Encode;
 import orbisoftware.hla_1516e_encoding.Common.FixedArrays.PlanetTypeArray_Encode;
 import orbisoftware.hla_1516e_encoding.Common.FixedRecords.PlanetType_Encode;
 import orbisoftware.hla_1516e_encoding.Objects.SolarSystem_124a7dc86c25491f_Encode.SolarSystem_124a7dc86c25491f_Encode;
@@ -45,6 +49,7 @@ public class PublishSolarSystem {
    private RegionHandleSet defaultRegionSet;
    
    private static PublishSolarSystem single_instance = null;
+   private long updateCounter = 0;
 
    public static synchronized PublishSolarSystem getInstance() {
       if (single_instance == null)
@@ -95,6 +100,8 @@ public class PublishSolarSystem {
       
       byte[] tag = new String(utilities.generateRandomAlphaNumeric(8)).getBytes();
       
+      updateCounter++;
+      
       if (rtiAmb == null)
          return;
       
@@ -119,7 +126,24 @@ public class PublishSolarSystem {
          planetType.setPlanetSize(planetList.get(i).getHLAPlanet().planetSize);
          planetType.setOrbitalRadius(planetList.get(i).getHLAPlanet().orbitalRadius);
          planetType.setOrbitalVelocity(planetList.get(i).getHLAPlanet().orbitalVelocity);
+      }
+      
+      if (updateCounter % 100 == 0) {
          
+         PlanetHasCompletedAnOrbit_3a3be83c4403ab7d_Cont container = new PlanetHasCompletedAnOrbit_3a3be83c4403ab7d_Cont();
+         HLAASCIIstringImp_Cont planetName = new HLAASCIIstringImp_Cont();
+         Random random = new Random();
+         int randomNum = random.nextInt(10);
+         
+         if (randomNum != 0) { // Ignore the Sun
+            
+            container.planetID = randomNum;
+            planetName.value = PlanetOrdinal_Encode.getName(randomNum);
+            container.planetName = planetName;
+            
+            PublishPlanetHasCompletedAnOrbit instance = PublishPlanetHasCompletedAnOrbit.getInstance();
+            instance.sideLoadPublishSample(container);
+         }
       }
       
       solarSystem.setPlanets(planetTypeArray);
