@@ -76,14 +76,6 @@ public class PublishPlanetHasCompletedAnOrbit {
 
    public void performObjectExecution() {
 
-      ParameterHandleValueMap parameters;
-      RtiFactory factory_ = null;
-
-      try {
-         factory_ = RtiFactoryFactory.getRtiFactory();
-      } catch (Exception e) {
-      }
-
    }
 
    public void sideLoadPublishSample(Object objectRef) {
