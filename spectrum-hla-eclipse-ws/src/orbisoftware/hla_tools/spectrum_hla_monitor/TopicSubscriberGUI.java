@@ -154,7 +154,7 @@ public class TopicSubscriberGUI implements ItemListener, ActionListener {
             shutdown();
          }
       });
-      frame.setSize(500, 400);
+      frame.setSize(700, 400);
 
       JScrollPane tableScrollPane;
 
@@ -319,7 +319,11 @@ public class TopicSubscriberGUI implements ItemListener, ActionListener {
 
          // Add margin
          width += 2 * margin;
-
+         
+         // Force column widths for selected columns
+         if ((i==1) || (i==5))
+            width *= 10;
+         
          // Set the width
          col.setPreferredWidth(width);
       }
