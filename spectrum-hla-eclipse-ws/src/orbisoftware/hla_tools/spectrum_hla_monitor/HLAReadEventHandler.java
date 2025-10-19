@@ -119,13 +119,13 @@ public class HLAReadEventHandler extends Thread implements
             shutdown();
          }
 
-         if (readEventList.size() > 0) {
+         while (readEventList.size() > 0) {
 
             try {
 
                OricSymbolMap oricSymMap = new OricSymbolMap();
-               HLASamples readEvent = readEventList.get(readEventList.size() - 1);
-
+               HLASamples readEvent = readEventList.remove(0); // Read the next sample from the linked list
+               
                oricSymbolMapClass = oricSymMap.getClass();
                Class<?>[] methodTypeParams = { Object.class };
                Method objToSymMap = oricSymbolMapClass.getMethod(OBJ_TO_SYM_MAP_METHOD, methodTypeParams);
@@ -137,6 +137,7 @@ public class HLAReadEventHandler extends Thread implements
                   String xml = GsonExt.toXml(gson.toJson(readEvent.seqHolder));
                   hlaTopic.sampleViewerGUI.updateTextTable(xml);
                }
+               
             } catch (Exception e) {
                e.printStackTrace();
             }
