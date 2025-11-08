@@ -28,7 +28,6 @@ import hla.rti1516e.InteractionClassHandle;
 import hla.rti1516e.ParameterHandleValueMap;
 import hla.rti1516e.RTIambassador;
 import hla.rti1516e.RegionHandleSet;
-import orbisoftware.hla_tools.spectrum_hla_monitor.ClassInstanceReference;
 import orbisoftware.hla_tools.spectrum_hla_monitor.HLADataLogger;
 import orbisoftware.hla_tools.spectrum_hla_monitor.HLAReadEventHandler;
 import orbisoftware.hla_tools.spectrum_hla_monitor.HLASamples;
@@ -47,6 +46,7 @@ public class ReceivePlanetHasCompletedAnOrbit {
 	private HLATopic hlaTopic = null;
 	private long initialStartTime = 0;
 	public boolean autoUpdateEnabled = false;
+	private PlanetHasCompletedAnOrbit_3a3be83c4403ab7d_Encode planetHasCompletedAnOrbit;
 	
    public static synchronized ReceivePlanetHasCompletedAnOrbit getInstance()
    {
@@ -81,14 +81,13 @@ public class ReceivePlanetHasCompletedAnOrbit {
 	public void performObjectPreExecution(RTIambassador rtiAmb, CommonFederateAmbassador fedAmb,
 			RegionHandleSet defaultRegionSet) {
 
-	   PlanetHasCompletedAnOrbit_3a3be83c4403ab7d_Encode planetHasCompletedAnOrbit = 
-            ClassInstanceReference.getInstance().planetHasCompletedAnOrbit;
+	   planetHasCompletedAnOrbit = new PlanetHasCompletedAnOrbit_3a3be83c4403ab7d_Encode();
 
 		try {
 		   
 		   planetHasCompletedAnOrbit.initialize(rtiAmb);
          
-		   interactionHandle = ClassInstanceReference.getInstance().planetHasCompletedAnOrbit.interactionHandle;
+		   interactionHandle = planetHasCompletedAnOrbit.interactionHandle;
 		   
 			rtiAmb.subscribeInteractionClassWithRegions(interactionHandle, defaultRegionSet);
 			
@@ -101,8 +100,6 @@ public class ReceivePlanetHasCompletedAnOrbit {
          ParameterHandleValueMap theParameterValues, byte[] userSuppliedTag) {
 
       PlanetHasCompletedAnOrbit_3a3be83c4403ab7d_Cont container = new PlanetHasCompletedAnOrbit_3a3be83c4403ab7d_Cont();
-      PlanetHasCompletedAnOrbit_3a3be83c4403ab7d_Encode planetHasCompletedAnOrbit = ClassInstanceReference
-            .getInstance().planetHasCompletedAnOrbit;
 
       planetHasCompletedAnOrbit.decode(theParameterValues);
 

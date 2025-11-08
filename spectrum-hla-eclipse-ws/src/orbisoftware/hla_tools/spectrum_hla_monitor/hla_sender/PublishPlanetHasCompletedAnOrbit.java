@@ -22,7 +22,6 @@
 package orbisoftware.hla_tools.spectrum_hla_monitor.hla_sender;
 
 import hla.rti1516e.InteractionClassHandle;
-import hla.rti1516e.ParameterHandle;
 import hla.rti1516e.ParameterHandleValueMap;
 import hla.rti1516e.RTIambassador;
 import hla.rti1516e.RegionHandleSet;
@@ -32,7 +31,6 @@ import orbisoftware.hla_1516e_containers.Interactions.PlanetHasCompletedAnOrbit_
 import orbisoftware.hla_1516e_encoding.Common.PrefixedStringLength.HLAASCIIstringImp_Encode;
 import orbisoftware.hla_1516e_encoding.Interactions.PlanetHasCompletedAnOrbit_3a3be83c4403ab7d_Encode.PlanetHasCompletedAnOrbit_3a3be83c4403ab7d_Encode;
 import orbisoftware.hla_shared.Utilities;
-import orbisoftware.hla_tools.spectrum_hla_monitor.ClassInstanceReference;
 
 public class PublishPlanetHasCompletedAnOrbit {
 
@@ -41,7 +39,8 @@ public class PublishPlanetHasCompletedAnOrbit {
    private RTIambassador rtiAmb;
    private CommonFederateAmbassador fedAmb;
    private RegionHandleSet defaultRegionSet;
-
+   private PlanetHasCompletedAnOrbit_3a3be83c4403ab7d_Encode planetHasCompletedAnOrbit;
+   
    private static PublishPlanetHasCompletedAnOrbit single_instance = null;
 
    public static synchronized PublishPlanetHasCompletedAnOrbit getInstance() {
@@ -57,15 +56,16 @@ public class PublishPlanetHasCompletedAnOrbit {
 
    public void performObjectPreExecution(RTIambassador rtiAmb,
          CommonFederateAmbassador fedAmb, RegionHandleSet defaultRegionSet) {
-
-      PlanetHasCompletedAnOrbit_3a3be83c4403ab7d_Encode planetHasCompletedAnOrbit = ClassInstanceReference
-            .getInstance().planetHasCompletedAnOrbit;
       
       this.rtiAmb = rtiAmb;
       this.fedAmb = fedAmb;
       this.defaultRegionSet = defaultRegionSet;
 
+      planetHasCompletedAnOrbit = new PlanetHasCompletedAnOrbit_3a3be83c4403ab7d_Encode();
+      
       try {
+         planetHasCompletedAnOrbit.initialize(rtiAmb);
+         
          interactionHandle = rtiAmb.getInteractionClassHandle(planetHasCompletedAnOrbit.getFullyQualifiedInteractionName());
          rtiAmb.publishInteractionClass(interactionHandle);
 
@@ -87,7 +87,6 @@ public class PublishPlanetHasCompletedAnOrbit {
 
    public void sideLoadPublishSample(PlanetHasCompletedAnOrbit_3a3be83c4403ab7d_Cont container) {
 
-      PlanetHasCompletedAnOrbit_3a3be83c4403ab7d_Encode planetHasCompletedAnOrbit = ClassInstanceReference.getInstance().planetHasCompletedAnOrbit;
       ParameterHandleValueMap parameters = null;
       Utilities utilities = new Utilities();
       

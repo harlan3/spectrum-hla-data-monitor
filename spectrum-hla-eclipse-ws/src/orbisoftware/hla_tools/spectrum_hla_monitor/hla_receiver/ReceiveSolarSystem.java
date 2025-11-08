@@ -31,7 +31,6 @@ import orbisoftware.hla_1516e_containers.Objects.SolarSystem_124a7dc86c25491f_Co
 import orbisoftware.hla_1516e_encoding.Common.FixedArrays.PlanetTypeArray_Encode;
 import orbisoftware.hla_1516e_encoding.Common.FixedRecords.PlanetType_Encode;
 import orbisoftware.hla_1516e_encoding.Objects.SolarSystem_124a7dc86c25491f_Encode.SolarSystem_124a7dc86c25491f_Encode;
-import orbisoftware.hla_tools.spectrum_hla_monitor.ClassInstanceReference;
 import orbisoftware.hla_tools.spectrum_hla_monitor.HLADataLogger;
 import orbisoftware.hla_tools.spectrum_hla_monitor.HLAReadEventHandler;
 import orbisoftware.hla_tools.spectrum_hla_monitor.HLASamples;
@@ -46,7 +45,8 @@ public class ReceiveSolarSystem {
 	private HLATopic hlaTopic = null;
 	private long initialStartTime = 0;
 	public boolean autoUpdateEnabled = false;
-	  
+	private SolarSystem_124a7dc86c25491f_Encode solarSystem = new SolarSystem_124a7dc86c25491f_Encode();
+	
    public static synchronized ReceiveSolarSystem getInstance()
    {
        if (single_instance == null)
@@ -59,34 +59,32 @@ public class ReceiveSolarSystem {
 
 	}
 	
-	public void initialize(HLATopic hlaTopic) {
-	      
-	      readEventSample = new PropertyChangeSupport(this);
-	      
-	      hlaTopic.readEventHandler = new HLAReadEventHandler(hlaTopic);
-	      readEventSample.addPropertyChangeListener(hlaTopic.readEventHandler);
-	      readEventSample.addPropertyChangeListener(hlaTopic.readEventHandler.receiveListGUI);
-	      hlaTopic.readEventHandler.start();
-	      
-	      hlaTopic.dataLogger = new HLADataLogger(hlaTopic);
-	      readEventSample.addPropertyChangeListener(hlaTopic.dataLogger);
-	      hlaTopic.dataLogger.start();
-	      
-	      initialStartTime = System.currentTimeMillis();
-	      
-	      this.hlaTopic = hlaTopic;
-	   }
+   public void initialize(HLATopic hlaTopic) {
+
+      readEventSample = new PropertyChangeSupport(this);
+
+      hlaTopic.readEventHandler = new HLAReadEventHandler(hlaTopic);
+      readEventSample.addPropertyChangeListener(hlaTopic.readEventHandler);
+      readEventSample.addPropertyChangeListener(hlaTopic.readEventHandler.receiveListGUI);
+      hlaTopic.readEventHandler.start();
+
+      hlaTopic.dataLogger = new HLADataLogger(hlaTopic);
+      readEventSample.addPropertyChangeListener(hlaTopic.dataLogger);
+      hlaTopic.dataLogger.start();
+
+      initialStartTime = System.currentTimeMillis();
+
+      this.hlaTopic = hlaTopic;
+   }
 	
 	public void performObjectPreExecution(RTIambassador rtiAmb, CommonFederateAmbassador fedAmb,
 			RegionHandleSet defaultRegionSet) {
 
-	   SolarSystem_124a7dc86c25491f_Encode solarSystem = ClassInstanceReference.getInstance().solarSystem;
+	   solarSystem = new SolarSystem_124a7dc86c25491f_Encode();
 
 		try {
 		   
-		   // Wait for publisher to initialize the solar system object
-		   while (solarSystem.hasInitialized == false)
-		      Thread.sleep(1000);
+		   solarSystem.initialize(rtiAmb);
 		   
 	      AttributeSetRegionSetPairList attrHandleSetPairList =  rtiAmb.getAttributeSetRegionSetPairListFactory().create(1);
 	      AttributeRegionAssociation attrHandleSetPair = new AttributeRegionAssociation(solarSystem.attribHandles, defaultRegionSet);
@@ -102,7 +100,6 @@ public class ReceiveSolarSystem {
 	public void receiveAttributeUpdateCallback(AttributeHandleValueMap theAttributeValues, byte[] userSuppliedTag) {
 
 	   SolarSystem_124a7dc86c25491f_Cont container = new SolarSystem_124a7dc86c25491f_Cont();
-	   SolarSystem_124a7dc86c25491f_Encode solarSystem = ClassInstanceReference.getInstance().solarSystem;
 	   
 	   solarSystem.decode(theAttributeValues);
 	   
