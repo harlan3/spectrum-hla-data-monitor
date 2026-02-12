@@ -37,7 +37,6 @@ import orbisoftware.hla_1516e_encoding.Common.FixedArrays.PlanetTypeArray_Encode
 import orbisoftware.hla_1516e_encoding.Common.FixedRecords.PlanetType_Encode;
 import orbisoftware.hla_1516e_encoding.Objects.SolarSystem_124a7dc86c25491f_Encode.SolarSystem_124a7dc86c25491f_Encode;
 import orbisoftware.hla_shared.Utilities;
-import orbisoftware.hlatools.spectrumhlamonitor.ClassInstanceReference;
 import orbisoftware.hlatools.spectrumhlamonitor.solarsystemdemo.PlanetModel;
 
 public class PublishSolarSystem {
@@ -47,6 +46,7 @@ public class PublishSolarSystem {
    private RTIambassador rtiAmb;
    private CommonFederateAmbassador fedAmb;
    private RegionHandleSet defaultRegionSet;
+   private SolarSystem_124a7dc86c25491f_Encode solarSystem;
    
    private static PublishSolarSystem single_instance = null;
    private long updateCounter = 0;
@@ -67,12 +67,11 @@ public class PublishSolarSystem {
       this.rtiAmb = rtiAmb;
       this.fedAmb = fedAmb;
       this.defaultRegionSet = defaultRegionSet;
+
+      solarSystem = new SolarSystem_124a7dc86c25491f_Encode();
+      solarSystem.initialize(rtiAmb);
       
 		try {
-
-		   SolarSystem_124a7dc86c25491f_Encode solarSystem = ClassInstanceReference.getInstance().solarSystem;
-		   
-		   solarSystem.initialize(rtiAmb);
 
          rtiAmb.publishObjectClassAttributes(solarSystem.objectHandle, solarSystem.attribHandles);
 
@@ -93,8 +92,7 @@ public class PublishSolarSystem {
 	}
 	
    public void sideLoadPublishSample(ArrayList<PlanetModel> planetList) {
-
-      SolarSystem_124a7dc86c25491f_Encode solarSystem = ClassInstanceReference.getInstance().solarSystem;       
+  
       AttributeHandleValueMap attributes = null;
       Utilities utilities = new Utilities();
       

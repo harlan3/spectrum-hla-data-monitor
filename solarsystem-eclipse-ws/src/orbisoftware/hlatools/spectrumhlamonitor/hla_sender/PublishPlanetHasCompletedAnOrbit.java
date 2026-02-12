@@ -32,7 +32,6 @@ import orbisoftware.hla_1516e_containers.Interactions.PlanetHasCompletedAnOrbit_
 import orbisoftware.hla_1516e_encoding.Common.PrefixedStringLength.HLAASCIIstringImp_Encode;
 import orbisoftware.hla_1516e_encoding.Interactions.PlanetHasCompletedAnOrbit_3a3be83c4403ab7d_Encode.PlanetHasCompletedAnOrbit_3a3be83c4403ab7d_Encode;
 import orbisoftware.hla_shared.Utilities;
-import orbisoftware.hlatools.spectrumhlamonitor.ClassInstanceReference;
 
 public class PublishPlanetHasCompletedAnOrbit {
 
@@ -41,7 +40,8 @@ public class PublishPlanetHasCompletedAnOrbit {
    private RTIambassador rtiAmb;
    private CommonFederateAmbassador fedAmb;
    private RegionHandleSet defaultRegionSet;
-
+   private PlanetHasCompletedAnOrbit_3a3be83c4403ab7d_Encode planetHasCompletedAnOrbit;
+   
    private static PublishPlanetHasCompletedAnOrbit single_instance = null;
 
    public static synchronized PublishPlanetHasCompletedAnOrbit getInstance() {
@@ -58,8 +58,8 @@ public class PublishPlanetHasCompletedAnOrbit {
    public void performObjectPreExecution(RTIambassador rtiAmb,
          CommonFederateAmbassador fedAmb, RegionHandleSet defaultRegionSet) {
 
-      PlanetHasCompletedAnOrbit_3a3be83c4403ab7d_Encode planetHasCompletedAnOrbit = ClassInstanceReference
-            .getInstance().planetHasCompletedAnOrbit;
+      planetHasCompletedAnOrbit = new PlanetHasCompletedAnOrbit_3a3be83c4403ab7d_Encode();
+      planetHasCompletedAnOrbit.initialize(rtiAmb);
       
       this.rtiAmb = rtiAmb;
       this.fedAmb = fedAmb;
@@ -81,7 +81,6 @@ public class PublishPlanetHasCompletedAnOrbit {
    public void sideLoadPublishSample(Object objectRef) {
 
       PlanetHasCompletedAnOrbit_3a3be83c4403ab7d_Cont container = (PlanetHasCompletedAnOrbit_3a3be83c4403ab7d_Cont) objectRef;
-      PlanetHasCompletedAnOrbit_3a3be83c4403ab7d_Encode planetHasCompletedAnOrbit = ClassInstanceReference.getInstance().planetHasCompletedAnOrbit;
       ParameterHandleValueMap parameters = null;
       Utilities utilities = new Utilities();
       
