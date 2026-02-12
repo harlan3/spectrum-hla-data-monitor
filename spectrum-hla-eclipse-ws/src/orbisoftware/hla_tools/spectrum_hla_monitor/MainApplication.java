@@ -70,8 +70,8 @@ public class MainApplication {
 
    private static void printUsage() {
 
-      System.out.println("Usage: spectrum-hla-mom-monitor [OPTION]...");
-      System.out.println("Run the spectrum-hla-mom-monitor");
+      System.out.println("Usage: spectrum-hla-data-monitor [OPTION]...");
+      System.out.println("Run the spectrum-hla-data-monitor");
       System.out.println();
       System.out.println("   -f, --federate          Federate Name");
    }

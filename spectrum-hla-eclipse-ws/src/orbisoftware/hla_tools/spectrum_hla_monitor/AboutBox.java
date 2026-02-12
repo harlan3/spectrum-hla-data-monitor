@@ -64,12 +64,12 @@ public class AboutBox extends javax.swing.JDialog implements ActionListener {
             appTitleLabel.getFont().getSize() + 4));
       appTitleLabel.setText("Spectrum HLA Data Monitor");
 
-      appDescLabel.setText("HLA MOM data monitor and debug tool");
+      appDescLabel.setText("HLA data monitor and debug tool");
 
       versionLabel.setText("Version " + softwareVersion);
 
       vendorLabel.setText("Orbis Software");
-      copyRightLabel.setText("Copyright (C) 2025 Harlan Murphy");
+      copyRightLabel.setText("Copyright (C) 2026 Harlan Murphy");
 
       GridBagConstraints c = new GridBagConstraints();
       c.weightx = 1.0;

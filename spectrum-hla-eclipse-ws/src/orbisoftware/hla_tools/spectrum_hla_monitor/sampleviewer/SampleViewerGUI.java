@@ -60,6 +60,7 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JScrollPane;
@@ -185,29 +186,55 @@ public class SampleViewerGUI implements ActionListener {
          public void actionPerformed(ActionEvent ae) {
 
             JFileChooser fileChooser = new JFileChooser();
-            FileNameExtensionFilter filter = new FileNameExtensionFilter("Recursive Descent Symbol Map", "rdsm");
+            FileNameExtensionFilter filter = new FileNameExtensionFilter(
+                  "Recursive Descent Symbol Map", "rdsm");
             fileChooser.setFileFilter(filter);
             fileChooser.setCurrentDirectory(new File(currentWorkingDir.toString()));
             int result = fileChooser.showSaveDialog(fileChooser);
             if (result == JFileChooser.APPROVE_OPTION) {
-               String selectedFile = fileChooser.getSelectedFile().getAbsolutePath().toString();
+               String selectedFile = fileChooser.getSelectedFile()
+                     .getAbsolutePath().toString();
                if (!selectedFile.endsWith(".rdsm"))
                   selectedFile += ".rdsm";
-               //System.out.println("Selected file: " + selectedFile);
-               
+
+               File fileToSave = new File(selectedFile);
+
                OricSymbolMap oricSymbolMap = new OricSymbolMap();
                StringBuffer buffer = new StringBuffer();
                Object objInstance;
-               
+
                objInstance = symbolRowModel.getOricSymbolMap().symMapToObj();
                oricSymbolMap.objToSymMapBuffer(objInstance, buffer);
-               
-               try (BufferedWriter writer = new BufferedWriter(new FileWriter(selectedFile))) {
-                  
-                  writer.write(buffer.toString());
-                  
-               } catch (Exception e) {
-                  e.printStackTrace();
+
+               if (fileToSave.exists()) {
+
+                  int confirmResult = JOptionPane.showConfirmDialog(frame,
+                        "The file \"" + fileToSave.getName()
+                              + "\" already exists. Do you want to replace it?",
+                        "Existing file", JOptionPane.YES_NO_OPTION,
+                        JOptionPane.WARNING_MESSAGE);
+
+                  if (confirmResult == JOptionPane.YES_OPTION) {
+
+                     try (BufferedWriter writer = new BufferedWriter(
+                           new FileWriter(selectedFile))) {
+
+                        writer.write(buffer.toString());
+
+                     } catch (Exception e) {
+                        e.printStackTrace();
+                     }
+                  }
+               } else {
+
+                  try (BufferedWriter writer = new BufferedWriter(
+                        new FileWriter(selectedFile))) {
+
+                     writer.write(buffer.toString());
+
+                  } catch (Exception e) {
+                     e.printStackTrace();
+                  }
                }
             }
          }
