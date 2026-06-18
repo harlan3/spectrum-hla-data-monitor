@@ -26,7 +26,8 @@
          <classpath>       
             <pathelement location="./lib/encoding_classes.jar"/>
             <pathelement location="./lib/container_classes.jar"/>
-            <pathelement location="C:\rtis_D39\lib\win64_vc++-14.0\rtis1516e.jar"/>
+            <!-- <pathelement location="C:\rtis_D39\lib\win64_vc++-14.0\rtis1516e.jar"/> -->
+            <pathelement location="/rtis_D39/lib/x86_64_g++-11.2/rtis1516e.jar"/>
          </classpath>
       </javac>
    </target>

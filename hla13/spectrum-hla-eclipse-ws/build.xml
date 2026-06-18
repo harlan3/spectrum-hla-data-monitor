@@ -27,7 +27,8 @@
          <classpath>
             <pathelement location="./lib/outline.jar"/>
             <pathelement location="./lib/gson-1.7.jar"/>        
-            <pathelement location="C:\rtis_D39\lib\win64_vc++-14.0\rtis13.jar"/>
+            <!-- <pathelement location="C:\rtis_D39\lib\win64_vc++-14.0\rtis13.jar"/> -->
+            <pathelement location="/rtis_D39/lib/x86_64_g++-11.2/rtis13.jar"/>
          </classpath>
       </javac>
    </target>
