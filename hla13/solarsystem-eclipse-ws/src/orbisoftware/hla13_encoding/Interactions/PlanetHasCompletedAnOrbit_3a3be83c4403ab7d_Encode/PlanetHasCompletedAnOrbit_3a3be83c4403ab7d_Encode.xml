@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<doc>
+<metaData>
+   <parameters>PlanetID, PlanetName</parameters>
+   <parametersLength>2</parametersLength>
+</metaData>
+<node ID="88f8d3a6-f5f7-417f-ad3c-2ac7b3ee6987" TEXT="PlanetHasCompletedAnOrbit" className="PlanetHasCompletedAnOrbit_3a3be83c4403ab7d_Encode" classHandle="HLAinteractionRoot.PlanetHasCompletedAnOrbit" FOLDED="true">
+   <node ID="a2203ab0-e075-487b-a9bc-534d0050f209" TEXT="PlanetHasCompletedAnOrbit" path="HLAinteractionRoot.PlanetHasCompletedAnOrbit" FOM_LINE_NUMBER="" FOLDED="true">
+      <node ID="2733fd167194377e" TEXT="HLAinteger32BE PlanetID" TID="Basic" FOM_LINE_NUMBER="" FOLDED="true">
+      </node>
+      <node ID="4b0759e6d0c67a58" TEXT="HLAASCIIstringImp PlanetName" TID="Array" classtype="HLAASCIIchar" cardinality="Dynamic" encoding="HLAvariableArray" FOM_LINE_NUMBER="" FOLDED="true">
+      </node>
+   </node>
+</node>
+</doc>

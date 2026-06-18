@@ -1,0 +1,69 @@
+(FED
+
+  (Federation Solar_System)
+  (FEDversion v1.3)
+  
+  (Objects
+    (class ObjectRoot
+      (class SolarSystem
+        (attribute Planets best_effort receive) ;; type PlanetTypeArray
+      )
+    )
+  )
+  
+  (Spaces)
+  
+  (Interactions
+    (class InteractionRoot best_effort receive
+      (class PlanetHasCompletedAnOrbit best_effort receive
+        (parameter PlanetID)
+        (parameter PlanetName)
+      )
+    )
+  )
+  
+  (RoutingSpaces)
+  
+  (DataTypes
+  
+    (BasicData
+      (HLAinteger32BE 4)
+      (HLAfloat64BE 8)
+      (HLAASCIIstring variable)
+    )
+    
+    (ArrayData
+      (PlanetTypeArray
+         (dataType PlanetType)
+         (cardinality 10)
+      )
+    )
+
+    (EnumeratedData
+      (PlanetOrdinal HLAinteger32BE
+        (Mercury 1)
+        (Venus 2)
+        (Earth 3)
+        (Mars 4)
+        (Jupiter 5)
+        (Saturn 6)
+        (Uranus 7)
+        (Neptune 8)
+        (Pluto 9)
+      )
+    )
+
+    (FixedRecordData
+       (PlanetType
+         (PlanetID HLAinteger32BE)
+         (PlanetOrdinalValue HLAinteger32BE)
+         (XPos HLAfloat64BE)
+         (YPos HLAfloat64BE)
+         (Theta HLAfloat64BE)
+         (PlanetSize HLAfloat64BE)
+         (OrbitalRadius HLAfloat64BE)
+         (OrbitalVelocity HLAfloat64BE)
+       )
+    )
+  )
+)

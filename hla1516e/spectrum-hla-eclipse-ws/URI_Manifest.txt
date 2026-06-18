@@ -1,0 +1,12 @@
+# URI Format and Region Profile
+#
+# {Topic}, {Container Data Type}, {Publisher Type}, {Receiver Type}, {HLA Region Profile}
+#
+# HLA region profiles define the params for topics, publishers, subscribers, readers and writers.
+#
+# HLA_REGION_PROFILE_1 - Default region settings
+# HLA_REGION_PROFILE_2 -
+# HLA_REGION_PROFILE_3 -
+#
+SolarSystem, orbisoftware.hla_1516e_containers.Objects.SolarSystem_124a7dc86c25491f_Cont.SolarSystem_124a7dc86c25491f_Cont, orbisoftware.hla_tools.spectrum_hla_monitor.hla_sender.PublishSolarSystem, orbisoftware.hla_tools.spectrum_hla_monitor.hla_receiver.ReceiveSolarSystem, HLA_REGION_PROFILE_1
+PlanetHasCompletedAnOrbit, orbisoftware.hla_1516e_containers.Interactions.PlanetHasCompletedAnOrbit_3a3be83c4403ab7d_Cont.PlanetHasCompletedAnOrbit_3a3be83c4403ab7d_Cont, orbisoftware.hla_tools.spectrum_hla_monitor.hla_sender.PublishPlanetHasCompletedAnOrbit, orbisoftware.hla_tools.spectrum_hla_monitor.hla_receiver.ReceivePlanetHasCompletedAnOrbit, HLA_REGION_PROFILE_1

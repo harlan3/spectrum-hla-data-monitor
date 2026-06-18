@@ -1,0 +1,9 @@
+The following files must be updated when adding a new object or interaction to spectrum.
+
+URI_Manifest.txt
+orbisoftware.hla_tools.spectrum_hla_monitor.ClassInstanceReference
+orbisoftware.hla_tools.spectrum_hla_monitor.hla_receiver.CommonFederateAmbassador
+orbisoftware.hla_tools.spectrum_hla_monitor.hla_receiver.HLAFederateThread
+orbisoftware.hla_tools.spectrum_hla_monitor.hla_sender.HLAFederateThread
+copy and tailor orbisoftware.hla_tools.spectrum_hla_monitor.hla_receiver.ReceiveReportUpdatesSent
+copy and tailor orbisoftware.hla_tools.spectrum_hla_monitor.hla_sender.PublishHLAreportUpdatesSent
