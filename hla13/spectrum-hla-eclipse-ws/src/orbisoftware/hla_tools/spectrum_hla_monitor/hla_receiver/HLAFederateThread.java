@@ -96,7 +96,12 @@ public class HLAFederateThread extends Thread implements Runnable {
       initialized = true;
 
       while (!shutdown) {
+         
          rtiamb_.tick();
+         
+         try {
+            Thread.sleep(10);
+         } catch (InterruptedException e) { }
       }
 
       // One last invocation for callbacks

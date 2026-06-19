@@ -151,11 +151,15 @@ public class HLAFederateThread extends Thread implements Runnable {
          publishSolarSystem.performObjectExecution();
          publishPlanetHasCompletedAnOrbit.performObjectExecution();
 
-         rtiamb_.evokeMultipleCallbacks(0.001, 0.001);
+         rtiamb_.evokeMultipleCallbacks(0.0, 0.1);
+         
+         try {
+            Thread.sleep(10);
+         } catch (InterruptedException e) { }
       }
 
       // One last invocation for callbacks
-      rtiamb_.evokeMultipleCallbacks(0.5, 0.5);
+      rtiamb_.evokeMultipleCallbacks(0.0, 0.1);
       
       try {
          rtiamb_.resignFederationExecution(ResignAction.DELETE_OBJECTS_THEN_DIVEST);
