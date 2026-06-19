@@ -26,6 +26,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 import javax.swing.JTextPane;
 import javax.swing.SwingUtilities;
@@ -66,6 +67,20 @@ public class SampleTextList extends JTextPane {
       updateTimer.start();
    }
 
+   private static final java.util.concurrent.atomic.AtomicLong last = new java.util.concurrent.atomic.AtomicLong();
+
+   public static long nextUniqueMillis() {
+      while (true) {
+         long current = System.currentTimeMillis();
+         long previous = last.get();
+         long next = Math.max(current, previous + 5);
+
+         if (last.compareAndSet(previous, next)) {
+            return next;
+         }
+      }
+   }
+
    public void writeXML(String xmlContent) {
 
       if (xmlContent == null)
@@ -78,7 +93,7 @@ public class SampleTextList extends JTextPane {
       int startMarker = 0;
       XmlToken xmlToken = XmlToken.NONE;
 
-      bufferAppend(Color.BLUE, " Sample Timestamp: " + new Timestamp(new Date().getTime()) + " ");
+      bufferAppend(Color.BLUE, " Sample Timestamp: " + new Timestamp(nextUniqueMillis()) + " ");
       
       while (cursor < xmlContentCharArray.length) {
 
