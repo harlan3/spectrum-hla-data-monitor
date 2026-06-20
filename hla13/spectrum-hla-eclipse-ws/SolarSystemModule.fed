@@ -9,14 +9,15 @@
   (objects
     (class ObjectRoot
       (class SolarSystem
-        (attribute Planets best_effort timestamp)
+        (attribute Planets best_effort receive)
           ; 1516 dataType=PlanetTypeArray; semantics=Solar system planet data
       )
     )
   )
+  
   (interactions
     (class InteractionRoot best_effort receive
-      (class PlanetHasCompletedAnOrbit reliable timestamp
+      (class PlanetHasCompletedAnOrbit best_effort receive
         (parameter PlanetID)
           ; 1516 dataType=HLAinteger32BE; semantics=ID of the planet that has completed an orbit
         (parameter PlanetName)
