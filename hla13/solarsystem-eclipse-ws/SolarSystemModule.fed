@@ -1,72 +1,27 @@
 (FED
 
-  (Federation Solar_System)
+  (Federation SolarSystem)
   (FEDversion v1.3)
   (Description "Solar System simulation.")
   (POC "Mr. Harlan Murphy")
   (POCEmail "harlan3@hotmail.com")
-    
-  (Objects
+  
+  (objects
     (class ObjectRoot
       (class SolarSystem
-        (attribute Planets best_effort receive) ;; type PlanetTypeArray
+        (attribute Planets best_effort timestamp)
+          ; 1516 dataType=PlanetTypeArray; semantics=Solar system planet data
       )
     )
   )
-  
-  (Spaces)
-  
-  (Interactions
+  (interactions
     (class InteractionRoot best_effort receive
-      (class PlanetHasCompletedAnOrbit best_effort receive
+      (class PlanetHasCompletedAnOrbit reliable timestamp
         (parameter PlanetID)
+          ; 1516 dataType=HLAinteger32BE; semantics=ID of the planet that has completed an orbit
         (parameter PlanetName)
+          ; 1516 dataType=HLAASCIIstring; semantics=Name of the planet that has completed an orbit
       )
-    )
-  )
-  
-  (RoutingSpaces)
-  
-  (DataTypes
-  
-    (BasicData
-      (HLAinteger32BE 4)
-      (HLAfloat64BE 8)
-      (HLAASCIIstring variable)
-    )
-    
-    (ArrayData
-      (PlanetTypeArray
-         (dataType PlanetType)
-         (cardinality 10)
-      )
-    )
-
-    (EnumeratedData
-      (PlanetOrdinal HLAinteger32BE
-        (Mercury 1)
-        (Venus 2)
-        (Earth 3)
-        (Mars 4)
-        (Jupiter 5)
-        (Saturn 6)
-        (Uranus 7)
-        (Neptune 8)
-        (Pluto 9)
-      )
-    )
-
-    (FixedRecordData
-       (PlanetType
-         (PlanetID HLAinteger32BE)
-         (PlanetOrdinalValue HLAinteger32BE)
-         (XPos HLAfloat64BE)
-         (YPos HLAfloat64BE)
-         (Theta HLAfloat64BE)
-         (PlanetSize HLAfloat64BE)
-         (OrbitalRadius HLAfloat64BE)
-         (OrbitalVelocity HLAfloat64BE)
-       )
     )
   )
 )
