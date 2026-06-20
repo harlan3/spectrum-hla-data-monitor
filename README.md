@@ -6,3 +6,12 @@ The project also includes a bulk data producer (the solarsystem project), which 
 # Building the toolset
 
 ## Checkout from github
+git clone https://github.com/harlan3/spectrum-hla-data-monitor.git
+
+## Compiling and Running the HLA 1.3 projects on Windows
+in a command window type the following:  
+cd hla13\solarsystem-eclipse-ws  
+tweak build.xml to point to the correct rtis13.jar on your system.  
+ant clean  
+ant  
+tweak start.cmd to point to the correct RTI_LIB_HOME, JAVA_HOME, RTI_RID_FILE, and rtis13.jar.
