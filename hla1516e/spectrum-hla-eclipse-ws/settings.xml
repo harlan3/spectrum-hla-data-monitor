@@ -2,11 +2,6 @@
 <settings>
    <setting>
       <!-- Shared HLA setting -->
-      <name>RidFile</name>
-      <value>default.rid</value>
-   </setting>
-   <setting>
-      <!-- Shared HLA setting -->
       <name>FomFile</name>
       <value>SolarSystemModule.xml</value>
    </setting>
