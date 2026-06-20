@@ -8,7 +8,9 @@ The project also includes a bulk data producer (the solarsystem project), which 
 ## Checkout from github
 git clone https://github.com/harlan3/spectrum-hla-data-monitor.git
 
-## Compiling and Running the HLA-1.3 or HLA-1516e solar system project on Windows or Linux   
+## Compiling and Running the HLA-1.3 or HLA-1516e solar system project in Windows or Linux
+
+
 in a following command window, type the following depending on whether you are either using HLA-1.3 or HLA-1516e modes:  
 cd hla13\solarsystem-eclipse-ws (for HLA-1.3)
 cd hla1516e\solarsystem-eclipse-ws (for HLA-1516e)
