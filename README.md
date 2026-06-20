@@ -6,21 +6,31 @@ Samples defined as HLA objects and interactions instantiations can be modified a
 ## Checkout from github
 git clone https://github.com/harlan3/spectrum-hla-data-monitor.git
 
-## Compiling and Running the HLA-1.3 or HLA-1516e solar system project in Windows or Linux
-in a command window, type the following depending on whether you are either using either HLA-1.3 or HLA-1516e modes:  
-cd hla13\solarsystem-eclipse-ws (for HLA-1.3)
-cd hla1516e\solarsystem-eclipse-ws (for HLA-1516e)
-tweak build.xml to point to the correct rtis13.jar or rtis1516e.jar on your system depending on whether you are either using HLA-1.3 or HLA-1516e modes.  
+## Compiling the HLA-1.3 or HLA-1516e solarsystem project in Windows or Linux
+in a command window, type the following depending on whether you are either using either HLA-1.3 or HLA-1516e mode:  
+cd hla13\solarsystem-eclipse-ws (for HLA-1.3)   
+cd hla1516e\solarsystem-eclipse-ws (for HLA-1516e)   
+tweak build.xml to point to the correct rtis13.jar or rtis1516e.jar depending on whether you are using HLA-1.3 or HLA-1516e modes.  
 ant clean  
 ant  
 tweak start.cmd (Windows) or start.sh (Linux) to point to the correct RTI_LIB_HOME, JAVA_HOME, RTI_RID_FILE, and rtis13.jar or rtis1516e.jar.  
+
+## Running the HLA-1.3 or HLA-1516e solarsystem project in Windows or Linux
 start.cmd -f test123 (Windows)  
 start.sh -f test123 (Linux)  
 
 ---
 
-## Compiling and Running the HLA-1.3 or HLA-1516e spectrum-hla-eclipse-ws on Windows or Linux
+## Compiling the HLA-1.3 or HLA-1516e spectrum-hla-data-monitor on Windows or Linux
 
-in a following command window, type the following depending on whether you are either using HLA-1.3 or HLA-1516e modes:    
+in a following command window, type the following depending on whether you are either using HLA-1.3 or HLA-1516e mode:    
 cd hla13\spectrum-hla-eclipse-ws (for HLA-1.3)
 cd hla1516e\spectrum-hla-eclipse-ws (for HLA-1516e)
+tweak build.xml to point to the correct rtis13.jar or rtis1516e.jar depending on whether you are using HLA-1.3 or HLA-1516e modes.  
+ant clean  
+ant  
+tweak start.cmd (Windows) or start.sh (Linux) to point to the correct RTI_LIB_HOME, JAVA_HOME, RTI_RID_FILE, and rtis13.jar or rtis1516e.jar.  
+
+## Running the HLA-1.3 or HLA-1516e spectrum-hla-data-monitor project in Windows or Linux
+start.cmd -f test123 (Windows)  
+start.sh -f test123 (Linux)  
