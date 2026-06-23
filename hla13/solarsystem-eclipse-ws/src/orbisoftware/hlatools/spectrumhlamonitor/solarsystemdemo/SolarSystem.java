@@ -43,11 +43,11 @@ public class SolarSystem extends JFrame {
    private BufferedImage bufferedImage;
    private Graphics2D graphics2D;
    
-   public void init() {
+   public void init(String federateName) {
 
       PlanetModel.setScreenDimensions(width, height);
       setBackground(Color.black);
-      setTitle("Solar System Demo - HLA 1.3");
+      setTitle("Solar System Demo - " + federateName + " - HLA 1.3");
       firstPaint = true;
 
       // Initialize Solar System
@@ -92,7 +92,7 @@ public class SolarSystem extends JFrame {
       planetList.add(new PlanetModel(9, "Pluto", 200, 5, Color.magenta));
    }
 
-   public void startSimulation() {
+   public void startSimulation(String federateName) {
 
       SolarSystem solarSystem = new SolarSystem();
       
@@ -105,7 +105,7 @@ public class SolarSystem extends JFrame {
       solarSystem.setSize(new Dimension(width - 0, height - 20));
       solarSystem.setVisible(true);
 
-      solarSystem.init();
+      solarSystem.init(federateName);
 
       while (true) {
 

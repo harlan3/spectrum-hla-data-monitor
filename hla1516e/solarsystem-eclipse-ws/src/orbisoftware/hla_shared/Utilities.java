@@ -43,6 +43,25 @@ public class Utilities {
       return sb.toString();
    }
    
+   public byte[] createTimestampTag()
+   {
+       long epochMillis = System.currentTimeMillis();
+
+       return Long.toString(epochMillis)
+                  .getBytes(StandardCharsets.US_ASCII);
+   }
+
+   public long getTimestampMillis(byte[] tag)
+   {
+       if (tag == null || tag.length == 0)
+       {
+           throw new IllegalArgumentException("Tag must not be null or empty.");
+       }
+
+       String timestampText = new String(tag, StandardCharsets.US_ASCII);
+       return Long.parseLong(timestampText);
+   }
+   
 	public byte[] getBytesFromBoolean(boolean value) {
 
 		if (value)

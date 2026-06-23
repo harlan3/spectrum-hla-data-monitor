@@ -87,7 +87,7 @@ objectInstanceHandle = rtiAmb.registerObjectInstance(solarSystem.objectHandle);
       SuppliedAttributes attributes = null;
       Utilities utilities = new Utilities();
       
-      byte[] tag = new String(utilities.generateRandomAlphaNumeric(8)).getBytes();
+      byte[] tag = utilities.createTimestampTag();
       
       updateCounter++;
       

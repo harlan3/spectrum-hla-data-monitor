@@ -80,7 +80,7 @@ public class PublishPlanetHasCompletedAnOrbit {
       SuppliedParameters parameters = null;
       Utilities utilities = new Utilities();
       
-      byte[] tag = new String(utilities.generateRandomAlphaNumeric(8)).getBytes();
+      byte[] tag = utilities.createTimestampTag();
       
       if (rtiAmb == null)
          return;

@@ -114,7 +114,7 @@ public class MainApplication {
 			
 			hlaSenderMainApplication.startThreads();
 			
-			solarSystem.startSimulation();
+			solarSystem.startSimulation(federateValue);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
