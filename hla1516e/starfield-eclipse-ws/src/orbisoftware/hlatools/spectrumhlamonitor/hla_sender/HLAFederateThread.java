@@ -19,7 +19,7 @@
  *   
  */
 
-package orbisoftware.hla_tools.spectrum_hla_monitor.hla_receiver;
+package orbisoftware.hlatools.spectrumhlamonitor.hla_sender;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -27,7 +27,6 @@ import java.net.URL;
 import hla.rti1516e.CallbackModel;
 import hla.rti1516e.DimensionHandle;
 import hla.rti1516e.DimensionHandleSet;
-import hla.rti1516e.FederateHandle;
 import hla.rti1516e.RTIambassador;
 import hla.rti1516e.RangeBounds;
 import hla.rti1516e.RegionHandle;
@@ -38,39 +37,35 @@ import hla.rti1516e.RtiFactoryFactory;
 import hla.rti1516e.exceptions.FederatesCurrentlyJoined;
 import hla.rti1516e.exceptions.FederationExecutionAlreadyExists;
 import hla.rti1516e.exceptions.RTIexception;
-import orbisoftware.hla_tools.spectrum_hla_monitor.MainSharedData;
+import orbisoftware.hlatools.spectrumhlamonitor.starfielddemo.MainSharedData;
 
 public class HLAFederateThread extends Thread implements Runnable {
-   
-   // Objects
-   private ReceiveStarField receiveStarField = ReceiveStarField.getInstance();
-   private ReceiveSolarSystem receiveSolarSystem = ReceiveSolarSystem.getInstance();
-	
-	// Interactions
-   private ReceiveStarHasLeftStarField receiveStarHasLeftStarfield = ReceiveStarHasLeftStarField.getInstance();
-   private ReceivePlanetHasCompletedAnOrbit receivePlanetHasCompletedAnOrbit = ReceivePlanetHasCompletedAnOrbit.getInstance();
-	
+
+	// All HLA publishers defined here
+	private PublishStarField publishStarField = PublishStarField.getInstance();
+	private PublishStarHasLeftStarField publishStarHasLeftStarField = PublishStarHasLeftStarField.getInstance();
+
 	private RtiFactory factory_;
 	private RTIambassador rtiamb_;
 	private CommonFederateAmbassador fedamb_;
 
-   public boolean initialized;
+	public boolean initialized;
 	private static boolean shutdown;
 	public static boolean shutdownComplete;
-	
+
 	HLAFederateThread() throws RTIexception, MalformedURLException {
-		
+
 		factory_ = RtiFactoryFactory.getRtiFactory();
 		rtiamb_ = factory_.getRtiAmbassador();
 
 		fedamb_ = new CommonFederateAmbassador();
 		fedamb_.setRtiAmb(rtiamb_);
-		
+
 		initialized = false;
 		shutdown = false;
 		shutdownComplete = false;
 	}
-	
+
 	void createDefaultRegion(RegionHandleSet regions) {
 
 		// Set up a region to send this to
@@ -83,6 +78,7 @@ public class HLAFederateThread extends Thread implements Runnable {
 			dims.add(dim1);
 			dims.add(dim2);
 			dims.add(dim3);
+
 			RegionHandle region = rtiamb_.createRegion(dims);
 			RangeBounds rb1 = new RangeBounds(0x00000000L, 0x00000001L);
 			rtiamb_.setRangeBounds(region, dim1, rb1);
@@ -90,7 +86,7 @@ public class HLAFederateThread extends Thread implements Runnable {
 			rtiamb_.setRangeBounds(region, dim2, rb2);
 			RangeBounds rb3 = new RangeBounds(0x00000000L, 0x00000001L);
 			rtiamb_.setRangeBounds(region, dim3, rb3);
-			// regions = rtiamb_.getRegionHandleSetFactory().create();
+
 			regions.add(region);
 			rtiamb_.commitRegionModifications(regions);
 
@@ -99,10 +95,10 @@ public class HLAFederateThread extends Thread implements Runnable {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Override
 	public void run() {
-	
+
 		shutdown = false;
 		try {
 			threadEntryPoint();
@@ -111,20 +107,19 @@ public class HLAFederateThread extends Thread implements Runnable {
 		}
 	}
 
-	public static void shutdownReq()
-	{
+	public static void shutdownReq() {
 		shutdown = true;
-	}	
-	
+	}
+
 	void threadEntryPoint() throws RTIexception, MalformedURLException {
-		
+
 		try {
 			rtiamb_.connect(fedamb_, CallbackModel.HLA_EVOKED);
 		} catch (RTIexception ex) {
 			System.err.println(ex.toString());
 			System.exit(-1);
 		}
-		
+
 		try {
 			rtiamb_.createFederationExecution(MainSharedData.getInstance().xmlMap.get("Federation"),
 					new URL("file:" + MainSharedData.getInstance().xmlMap.get("FomFile")));
@@ -135,39 +130,34 @@ public class HLAFederateThread extends Thread implements Runnable {
 		}
 
 		try {
-		   FederateHandle federateHandle = rtiamb_.joinFederationExecution(MainSharedData.getInstance().xmlMap.get("Federate"),
+			rtiamb_.joinFederationExecution(MainSharedData.getInstance().xmlMap.get("Federate"),
 					MainSharedData.getInstance().xmlMap.get("Federation"));
-		   
-		   MainSharedData.getInstance().federateHandle2 = federateHandle.hashCode();
 		} catch (RTIexception ex) {
 			System.err.println(ex.toString());
 			System.exit(-1);
 		}
-		
+
 		RegionHandleSet regionHandleSet = rtiamb_.getRegionHandleSetFactory().create();
 		createDefaultRegion(regionHandleSet);
 
-      // Objects
-		receiveStarField.performObjectPreExecution(rtiamb_, fedamb_, regionHandleSet);
-      receiveSolarSystem.performObjectPreExecution(rtiamb_, fedamb_, regionHandleSet);
-
-      // Interactions
-      receiveStarHasLeftStarfield.performObjectPreExecution(rtiamb_, fedamb_, regionHandleSet);
-      receivePlanetHasCompletedAnOrbit.performObjectPreExecution(rtiamb_, fedamb_, regionHandleSet);
-
-      initialized = true;
+		publishStarField.performObjectPreExecution(rtiamb_, fedamb_, regionHandleSet);
+		publishStarHasLeftStarField.performObjectPreExecution(rtiamb_, fedamb_, regionHandleSet);
 
 		while (!shutdown) {
-			
-		   rtiamb_.evokeMultipleCallbacks(0.0, 0.1);
-		   
-         try {
-            Thread.sleep(10);
-         } catch (InterruptedException e) { }
+
+			publishStarField.performObjectExecution();
+			publishStarHasLeftStarField.performObjectExecution();
+
+			rtiamb_.evokeMultipleCallbacks(0.0, 0.1);
+
+			try {
+				Thread.sleep(10);
+			} catch (InterruptedException e) {
+			}
 		}
-		
-      // One last invocation for callbacks
-      rtiamb_.evokeMultipleCallbacks(0.0, 0.1);
+
+		// One last invocation for callbacks
+		rtiamb_.evokeMultipleCallbacks(0.0, 0.1);
 
 		try {
 			rtiamb_.resignFederationExecution(ResignAction.DELETE_OBJECTS_THEN_DIVEST);
@@ -190,8 +180,7 @@ public class HLAFederateThread extends Thread implements Runnable {
 			System.err.println(ex.toString());
 			System.exit(-1);
 		}
-		
-		shutdownComplete = true;
-	}
 
+		System.exit(0);
+	}
 }

@@ -19,7 +19,7 @@
  *   
  */
 
-package orbisoftware.hla_tools.spectrum_hla_monitor.hla_receiver;
+package orbisoftware.hlatools.spectrumhlamonitor.hla_sender;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -40,11 +40,11 @@ import hla.rti1516e.exceptions.FederateInternalError;
 
 public class CommonFederateAmbassador extends NullFederateAmbassador {
 
-   private ArrayList<ObjectInstanceHandle> objs;
-   private RTIambassador rtiAmb;
+	private ArrayList<ObjectInstanceHandle> objs;
+	private RTIambassador rtiAmb;
 	public HashMap<Integer, ObjectClassHandle> instanceHandleToClassHandleMap;
 	private boolean debug = false;
-	
+
 	CommonFederateAmbassador() {
 
 		objs = new ArrayList<ObjectInstanceHandle>();
@@ -90,21 +90,6 @@ public class CommonFederateAmbassador extends NullFederateAmbassador {
 
 			if (debug)
 				System.out.println("reflectAttributeValues 1");
-
-			String className = rtiAmb.getObjectClassName(instanceHandleToClassHandleMap.get(theObject.hashCode()));
-
-         if (className.equals("StarField")) {
-            if (debug)
-               System.out.println("calling ReceiveStarfield.receiveAttributeUpdateCallback");
-            ReceiveStarField.getInstance().receiveAttributeUpdateCallback(theAttributes, userSuppliedTag);
-         }
-         
-			if (className.equals("SolarSystem")) {
-				if (debug)
-					System.out.println("calling ReceiveSolarSystem.receiveAttributeUpdateCallback");
-				ReceiveSolarSystem.getInstance().receiveAttributeUpdateCallback(theAttributes, userSuppliedTag);
-			}
-         
 		} catch (Exception e) {
 
 			e.printStackTrace();
@@ -130,21 +115,6 @@ public class CommonFederateAmbassador extends NullFederateAmbassador {
 
 			if (debug)
 				System.out.println("receiveInteraction 0");
-
-			String className = rtiAmb.getInteractionClassName(interactionClass);
-
-         if (className.equals("StarHasLeftStarField")) {
-            if (debug)
-               System.out.println("calling ReceiveStarHasLeftStarfield.receiveInteractionCallback");
-               ReceiveStarHasLeftStarField.getInstance().receiveInteractionCallback(theParameters, userSuppliedTag);
-         }
-         
-			if (className.equals("PlanetHasCompletedAnOrbit")) {
-				if (debug)
-					System.out.println("calling ReceiveCVSDRadioSignal.receiveInteractionCallback");
-				   ReceivePlanetHasCompletedAnOrbit.getInstance().receiveInteractionCallback(theParameters, userSuppliedTag);
-			}
-
 		} catch (Exception e) {
 
 			e.printStackTrace();

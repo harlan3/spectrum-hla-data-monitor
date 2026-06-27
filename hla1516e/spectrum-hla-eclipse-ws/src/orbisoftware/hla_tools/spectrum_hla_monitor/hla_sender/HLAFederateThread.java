@@ -43,7 +43,10 @@ import orbisoftware.hla_tools.spectrum_hla_monitor.MainSharedData;
 public class HLAFederateThread extends Thread implements Runnable {
 
    // All HLA publishers defined here
+   private PublishStarField publishStarField = PublishStarField.getInstance();
    private PublishSolarSystem publishSolarSystem = PublishSolarSystem.getInstance();
+   
+   private PublishStarHasLeftStarField publishStarHasLeftStarField = PublishStarHasLeftStarField.getInstance();
    private PublishPlanetHasCompletedAnOrbit publishPlanetHasCompletedAnOrbit = PublishPlanetHasCompletedAnOrbit.getInstance();
 
    private RtiFactory factory_;
@@ -145,6 +148,9 @@ public class HLAFederateThread extends Thread implements Runnable {
       RegionHandleSet regionHandleSet = rtiamb_.getRegionHandleSetFactory().create();
       createDefaultRegion(regionHandleSet);
 
+      publishStarField.performObjectPreExecution(rtiamb_, fedamb_, regionHandleSet);
+      publishStarHasLeftStarField.performObjectPreExecution(rtiamb_, fedamb_, regionHandleSet);
+      
       publishSolarSystem.performObjectPreExecution(rtiamb_, fedamb_, regionHandleSet);
       publishPlanetHasCompletedAnOrbit.performObjectPreExecution(rtiamb_, fedamb_, regionHandleSet);
       

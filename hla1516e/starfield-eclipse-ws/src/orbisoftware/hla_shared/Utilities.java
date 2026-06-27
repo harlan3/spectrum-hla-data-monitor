@@ -61,24 +61,7 @@ public class Utilities {
        String timestampText = new String(tag, StandardCharsets.US_ASCII);
        return Long.parseLong(timestampText);
    }
-
-   public byte[] stringToFixedBytes(String value, int size) {
-      
-      byte[] result = new byte[size];
-
-      if (value == null || size <= 0) {
-         return result;
-      }
-
-      byte[] source = value.getBytes(StandardCharsets.US_ASCII);
-
-      // Copy as much as fits; truncate excess bytes.
-      System.arraycopy(source, 0, result, 0,
-            Math.min(source.length, result.length));
-
-      return result;
-   }
-
+   
 	public byte[] getBytesFromBoolean(boolean value) {
 
 		if (value)

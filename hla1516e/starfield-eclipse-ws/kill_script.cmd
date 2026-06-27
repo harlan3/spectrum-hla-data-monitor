@@ -1,0 +1,1 @@
+taskkill /F /FI "WINDOWTITLE eq StarField Demo*"

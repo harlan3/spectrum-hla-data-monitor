@@ -6,9 +6,9 @@
       <version>1.0</version>
       <modificationDate>2025-10-04</modificationDate>
       <securityClassification>Unclassified</securityClassification>
-      <purpose>Example FOM for Solar System</purpose>
+      <purpose>Example FOM for Celestial Bodies Demos</purpose>
       <applicationDomain>Educational</applicationDomain>
-      <description>Example FOM for Solar System</description>
+      <description>Example FOM for Celestial Bodies Demos</description>
       <useLimitation>All uses are supported</useLimitation>
       <poc>
          <pocName>Sponsor</pocName>
@@ -26,6 +26,22 @@
       <objectClass>
          <name>HLAobjectRoot</name>
          <objectClass>
+            <name>StarField</name>
+            <sharing>Neither</sharing>
+            <semantics>A set of stars that comprise the star field</semantics>
+            <attribute>
+               <name>Stars</name>
+               <dataType>StarTypeArray</dataType>
+               <updateType>Conditional</updateType>
+               <updateCondition>Star data change</updateCondition>
+               <ownership>DivestAcquire</ownership>
+               <sharing>PublishSubscribe</sharing>
+               <transportation>HLAbestEffort</transportation>
+               <order>TimeStamp</order>
+               <semantics>Starfield star data</semantics>
+            </attribute>
+         </objectClass>
+         <objectClass>
             <name>SolarSystem</name>
             <sharing>Neither</sharing>
             <semantics>A set of planets that comprise the solar system</semantics>
@@ -36,7 +52,7 @@
                <updateCondition>Planet data change</updateCondition>
                <ownership>DivestAcquire</ownership>
                <sharing>PublishSubscribe</sharing>
-               <transportation>HLAreliable</transportation>
+               <transportation>HLAbestEffort</transportation>
                <order>TimeStamp</order>
                <semantics>Solar system planet data</semantics>
             </attribute>
@@ -47,9 +63,26 @@
       <interactionClass>
          <name>HLAinteractionRoot</name>
          <interactionClass>
+            <name>StarHasLeftStarField</name>
+            <sharing>Publish</sharing>
+            <transportation>HLAbestEffort</transportation>
+            <order>TimeStamp</order>
+            <semantics>Star has left the starfield</semantics>
+            <parameter>
+               <name>StarID</name>
+               <dataType>HLAinteger32BE</dataType>
+               <semantics>ID of the star that has left the starfield</semantics>
+            </parameter>
+            <parameter>
+               <name>StarName</name>
+               <dataType>HLAASCIIstring</dataType>
+               <semantics>Name of the star that has left the starfield</semantics>
+            </parameter>
+         </interactionClass>
+         <interactionClass>
             <name>PlanetHasCompletedAnOrbit</name>
             <sharing>Publish</sharing>
-            <transportation>HLAreliable</transportation>
+            <transportation>HLAbestEffort</transportation>
             <order>TimeStamp</order>
             <semantics>Planet has completed an orbit</semantics>
             <parameter>
@@ -139,6 +172,13 @@
       </enumeratedDataTypes>
       <arrayDataTypes>
          <arrayData>
+            <name>StarTypeArray</name>
+            <dataType>StarType</dataType>
+            <cardinality>571</cardinality>
+            <encoding>HLAfixedArray</encoding>
+            <semantics>Array of stars</semantics>
+         </arrayData>
+         <arrayData>
             <name>PlanetTypeArray</name>
             <dataType>PlanetType</dataType>
             <cardinality>10</cardinality>
@@ -147,6 +187,71 @@
          </arrayData>
       </arrayDataTypes>
       <fixedRecordDataTypes>
+         <fixedRecordData>
+            <name>StarType</name>
+            <encoding>HLAfixedRecord</encoding>
+            <semantics>Star characteristics</semantics>
+            <field>
+               <name>StarID</name>
+               <dataType>HLAinteger32BE</dataType>
+               <semantics>Unique star index</semantics>
+            </field>
+            <field>
+               <name>BaseSize</name>
+               <dataType>HLAinteger32BE</dataType>
+               <semantics>Star base size</semantics>
+            </field>
+            <field>
+               <name>XPos</name>
+               <dataType>HLAfloat64BE</dataType>
+               <semantics>X position of star</semantics>
+            </field>
+            <field>
+               <name>YPos</name>
+               <dataType>HLAfloat64BE</dataType>
+               <semantics>Y position of star</semantics>
+            </field>
+            <field>
+               <name>ProjX</name>
+               <dataType>HLAfloat64BE</dataType>
+               <semantics>3D projection of X for star</semantics>
+            </field>
+            <field>
+               <name>ProjY</name>
+               <dataType>HLAfloat64BE</dataType>
+               <semantics>3D projection of Y for star</semantics>
+            </field>
+            <field>
+               <name>ProjZ</name>
+               <dataType>HLAfloat64BE</dataType>
+               <semantics>3D projection of Z for star</semantics>
+            </field>
+            <field>
+               <name>Size</name>
+               <dataType>HLAfloat64BE</dataType>
+               <semantics>Size of star</semantics>
+            </field>
+            <field>
+               <name>Speed</name>
+               <dataType>HLAfloat64BE</dataType>
+               <semantics>Speed of star</semantics>
+            </field>
+            <field>
+               <name>BlinkSpeed</name>
+               <dataType>HLAfloat64BE</dataType>
+               <semantics>Blink speed of star</semantics>
+            </field>
+            <field>
+               <name>BlinkPhase</name>
+               <dataType>HLAfloat64BE</dataType>
+               <semantics>Blink phase of star</semantics>
+            </field>
+            <field>
+               <name>Alpha</name>
+               <dataType>HLAfloat64BE</dataType>
+               <semantics>Alpha color component of star</semantics>
+            </field>
+         </fixedRecordData>
          <fixedRecordData>
             <name>PlanetType</name>
             <encoding>HLAfixedRecord</encoding>
