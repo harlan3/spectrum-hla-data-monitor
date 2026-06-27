@@ -2,7 +2,7 @@ package orbisoftware.hlatools.spectrumhlamonitor.starfielddemo;
 
 public class Star {
 
-	// 88 fixed bytes plus dynamic bytes ~ 100 bytes payload
+	// 88 fixed bytes + string
 	public int starID;
 	public int baseSize;
 	public double xPos;

@@ -100,12 +100,12 @@ public class StarFieldModel extends JPanel implements ActionListener, KeyListene
 				}
 			}
 			
-			frameCounter++;
-
 			if (frameCounter == 10) {
 				publishStarField.sideLoadPublishSample(stars);
 				frameCounter = 0;
 			}
+			
+			frameCounter++;
 		}
 	}
 	

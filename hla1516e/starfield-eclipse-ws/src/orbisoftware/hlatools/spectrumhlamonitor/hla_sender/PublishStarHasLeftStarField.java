@@ -28,8 +28,10 @@ import hla.rti1516e.RegionHandleSet;
 import hla.rti1516e.RtiFactory;
 import hla.rti1516e.RtiFactoryFactory;
 import orbisoftware.hla_1516e_containers.Interactions.PlanetHasCompletedAnOrbit_3a3be83c4403ab7d_Cont.PlanetHasCompletedAnOrbit_3a3be83c4403ab7d_Cont;
+import orbisoftware.hla_1516e_containers.Interactions.StarHasLeftStarField_bd6b9371adddafc6_Cont.StarHasLeftStarField_bd6b9371adddafc6_Cont;
 import orbisoftware.hla_1516e_encoding.Common.PrefixedStringLength.HLAASCIIstringImp_Encode;
 import orbisoftware.hla_1516e_encoding.Interactions.PlanetHasCompletedAnOrbit_3a3be83c4403ab7d_Encode.PlanetHasCompletedAnOrbit_3a3be83c4403ab7d_Encode;
+import orbisoftware.hla_1516e_encoding.Interactions.StarHasLeftStarField_bd6b9371adddafc6_Encode.StarHasLeftStarField_bd6b9371adddafc6_Encode;
 import orbisoftware.hla_shared.Utilities;
 
 public class PublishStarHasLeftStarField {
@@ -39,7 +41,7 @@ public class PublishStarHasLeftStarField {
 	private RTIambassador rtiAmb;
 	private CommonFederateAmbassador fedAmb;
 	private RegionHandleSet defaultRegionSet;
-	private PlanetHasCompletedAnOrbit_3a3be83c4403ab7d_Encode planetHasCompletedAnOrbit;
+	private StarHasLeftStarField_bd6b9371adddafc6_Encode starHasLeftStarField;
 
 	private static PublishStarHasLeftStarField single_instance = null;
 
@@ -57,8 +59,8 @@ public class PublishStarHasLeftStarField {
 	public void performObjectPreExecution(RTIambassador rtiAmb, CommonFederateAmbassador fedAmb,
 			RegionHandleSet defaultRegionSet) {
 
-		planetHasCompletedAnOrbit = new PlanetHasCompletedAnOrbit_3a3be83c4403ab7d_Encode();
-		planetHasCompletedAnOrbit.initialize(rtiAmb);
+		starHasLeftStarField = new StarHasLeftStarField_bd6b9371adddafc6_Encode();
+		starHasLeftStarField.initialize(rtiAmb);
 
 		this.rtiAmb = rtiAmb;
 		this.fedAmb = fedAmb;
@@ -66,9 +68,9 @@ public class PublishStarHasLeftStarField {
 
 		try {
 			interactionHandle = rtiAmb
-					.getInteractionClassHandle(planetHasCompletedAnOrbit.getFullyQualifiedInteractionName());
+					.getInteractionClassHandle(starHasLeftStarField.getFullyQualifiedInteractionName());
 			rtiAmb.publishInteractionClass(interactionHandle);
-			planetHasCompletedAnOrbit.initialize(rtiAmb);
+			starHasLeftStarField.initialize(rtiAmb);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -80,7 +82,7 @@ public class PublishStarHasLeftStarField {
 
 	public void sideLoadPublishSample(Object objectRef) {
 
-		PlanetHasCompletedAnOrbit_3a3be83c4403ab7d_Cont container = (PlanetHasCompletedAnOrbit_3a3be83c4403ab7d_Cont) objectRef;
+		StarHasLeftStarField_bd6b9371adddafc6_Cont container = (StarHasLeftStarField_bd6b9371adddafc6_Cont) objectRef;
 		ParameterHandleValueMap parameters = null;
 		Utilities utilities = new Utilities();
 
@@ -91,19 +93,19 @@ public class PublishStarHasLeftStarField {
 
 		try {
 			parameters = rtiAmb.getParameterHandleValueMapFactory()
-					.create(planetHasCompletedAnOrbit.getNumberParameters());
+					.create(starHasLeftStarField.getNumberParameters());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-		planetHasCompletedAnOrbit.setPlanetID(container.planetID);
+		starHasLeftStarField.setStarID(container.starID);
 
 		HLAASCIIstringImp_Encode hlaASCIIstringImp = new HLAASCIIstringImp_Encode();
-		hlaASCIIstringImp.setString(container.planetName.value);
-		planetHasCompletedAnOrbit.setPlanetName(hlaASCIIstringImp);
+		hlaASCIIstringImp.setString(container.starName.value);
+		starHasLeftStarField.setStarName(hlaASCIIstringImp);
 
-		planetHasCompletedAnOrbit.encode(parameters);
+		starHasLeftStarField.encode(parameters);
 
 		try {
 			rtiAmb.sendInteractionWithRegions(interactionHandle, parameters, defaultRegionSet, tag);

@@ -26,6 +26,11 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.util.Random;
 
+import orbisoftware.hla_1516e_containers.Interactions.PlanetHasCompletedAnOrbit_3a3be83c4403ab7d_Cont.PlanetHasCompletedAnOrbit_3a3be83c4403ab7d_Cont;
+import orbisoftware.hla_1516e_containers.Interactions.StarHasLeftStarField_bd6b9371adddafc6_Cont.StarHasLeftStarField_bd6b9371adddafc6_Cont;
+import orbisoftware.hlatools.spectrumhlamonitor.hla_sender.PublishStarField;
+import orbisoftware.hlatools.spectrumhlamonitor.hla_sender.PublishStarHasLeftStarField;
+
 public class StarModel {
 
 	public Star hlaStar;
@@ -51,10 +56,18 @@ public class StarModel {
 		this.hlaStar.projZ -= this.hlaStar.speed;
 
 		if (this.hlaStar.projZ <= 1) {
+
+			PublishStarHasLeftStarField publishStarHasLeftStarField = PublishStarHasLeftStarField.getInstance();
+			StarHasLeftStarField_bd6b9371adddafc6_Cont container = new StarHasLeftStarField_bd6b9371adddafc6_Cont();
+			
 			this.hlaStar.projZ = screenWidth;
 			Random rand = new Random();
 			this.hlaStar.projX = rand.nextInt(screenWidth) - screenWidth / 2.0;
 			this.hlaStar.projY = rand.nextInt(screenHeight) - screenHeight / 2.0;
+			
+			container.starID = this.hlaStar.starID;
+			container.starName.value = this.hlaStar.properName;
+			publishStarHasLeftStarField.sideLoadPublishSample(container);
 		}
 		this.hlaStar.blinkPhase += this.hlaStar.blinkSpeed;
 	}
