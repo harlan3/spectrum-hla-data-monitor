@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<doc>
+<metaData>
+   <attributes>Planets</attributes>
+   <attributesLength>1</attributesLength>
+</metaData>
+<node ID="4aea997a-cfd4-4dc7-9a9d-8cdd1d1775ca" TEXT="SolarSystem" className="SolarSystem_124a7dc86c25491f_Cont" classHandle="HLAobjectRoot.SolarSystem" FOLDED="true">
+   <node ID="f0b6356c-0257-4101-8450-ff1b2760f88d" TEXT="SolarSystem" path="HLAobjectRoot.SolarSystem" FOM_LINE_NUMBER="" FOLDED="true">
+      <node ID="fadf2dd12a87960d" TEXT="PlanetTypeArray Planets" TID="Array" classtype="PlanetType" cardinality="10" encoding="HLAfixedArray" FOM_LINE_NUMBER="" FOLDED="true">
+         <node ID="85e46187bb7e14c6" TEXT="PlanetType planetType" TID="FixedRecord" FOM_LINE_NUMBER="" FOLDED="true">
+            <node ID="1d205d0d9d9d67e3" TEXT="HLAinteger32BE planetID" TID="Basic" FOM_LINE_NUMBER="" FOLDED="true">
+            </node>
+            <node ID="13a5661fbea809b3" TEXT="HLAinteger32BE planetOrdinalValue" TID="Basic" FOM_LINE_NUMBER="" FOLDED="true">
+            </node>
+            <node ID="b881c5f85371934f" TEXT="HLAfloat64BE xpos" TID="Basic" FOM_LINE_NUMBER="" FOLDED="true">
+            </node>
+            <node ID="9b8cb9d46a9dc758" TEXT="HLAfloat64BE ypos" TID="Basic" FOM_LINE_NUMBER="" FOLDED="true">
+            </node>
+            <node ID="4f8f50249ca95ff2" TEXT="HLAfloat64BE theta" TID="Basic" FOM_LINE_NUMBER="" FOLDED="true">
+            </node>
+            <node ID="278e6f97f281fd97" TEXT="HLAfloat64BE planetSize" TID="Basic" FOM_LINE_NUMBER="" FOLDED="true">
+            </node>
+            <node ID="ae2bcb1f68eba522" TEXT="HLAfloat64BE orbitalRadius" TID="Basic" FOM_LINE_NUMBER="" FOLDED="true">
+            </node>
+            <node ID="7e5587f49c440ec2" TEXT="HLAfloat64BE orbitalVelocity" TID="Basic" FOM_LINE_NUMBER="" FOLDED="true">
+            </node>
+         </node>
+      </node>
+   </node>
+</node>
+</doc>

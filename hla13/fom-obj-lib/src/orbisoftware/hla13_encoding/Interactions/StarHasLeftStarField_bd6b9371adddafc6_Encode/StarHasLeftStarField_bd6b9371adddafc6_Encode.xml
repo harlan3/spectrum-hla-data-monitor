@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<doc>
+<metaData>
+   <parameters>StarID, StarName</parameters>
+   <parametersLength>2</parametersLength>
+</metaData>
+<node ID="4b3d87a9-b2e3-43f5-a5b1-9be72b3133fb" TEXT="StarHasLeftStarField" className="StarHasLeftStarField_bd6b9371adddafc6_Encode" classHandle="InteractionRoot.StarHasLeftStarField" FOLDED="true">
+   <node ID="ef499f62-5753-42e5-ab28-175122f49a3f" TEXT="StarHasLeftStarField" path="InteractionRoot.StarHasLeftStarField" FOM_LINE_NUMBER="" FOLDED="true">
+      <node ID="14bff4c3499df288" TEXT="HLAinteger32BE StarID" TID="Basic" FOM_LINE_NUMBER="" FOLDED="true">
+      </node>
+      <node ID="a5da5bf1d0283e8f" TEXT="HLAASCIIstringImp StarName" TID="Array" classtype="HLAASCIIchar" cardinality="Dynamic" encoding="HLAvariableArray" FOM_LINE_NUMBER="" FOLDED="true">
+      </node>
+   </node>
+</node>
+</doc>

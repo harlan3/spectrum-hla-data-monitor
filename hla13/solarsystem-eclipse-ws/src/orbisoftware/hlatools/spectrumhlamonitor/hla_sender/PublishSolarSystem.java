@@ -70,7 +70,7 @@ public class PublishSolarSystem {
 		try {
 
          rtiAmb.publishObjectClass(solarSystem.objectHandle, solarSystem.attribHandles);
-objectInstanceHandle = rtiAmb.registerObjectInstance(solarSystem.objectHandle);
+         objectInstanceHandle = rtiAmb.registerObjectInstance(solarSystem.objectHandle);
          fedAmb.instanceHandleToClassHandleMap.put(Integer.valueOf(objectInstanceHandle).hashCode(), solarSystem.objectHandle);
 			
 		} catch (Exception e) {

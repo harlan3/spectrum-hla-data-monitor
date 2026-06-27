@@ -3,11 +3,11 @@
    <setting>
       <!-- Shared HLA setting -->
       <name>FomFile</name>
-      <value>SolarSystemModule.fed</value>
+      <value>CelestialBodiesModule.fed</value>
    </setting>
    <setting>
       <!-- Shared HLA setting -->
       <name>Federation</name>
-      <value>SolarSystemFederation</value>
+      <value>CelestialBodiesFederation</value>
    </setting>
 </settings>

@@ -19,9 +19,11 @@ public class HLAFederateThread extends Thread implements Runnable {
 
    // Objects
    private ReceiveSolarSystem receiveSolarSystem = ReceiveSolarSystem.getInstance();
+   private ReceiveStarField receiveStarField = ReceiveStarField.getInstance();
 
    // Interactions
    private ReceivePlanetHasCompletedAnOrbit receivePlanetHasCompletedAnOrbit = ReceivePlanetHasCompletedAnOrbit.getInstance();
+   private ReceiveStarHasLeftStarField receiveStarHasLeftStarField = ReceiveStarHasLeftStarField.getInstance();
 
    private RtiFactory factory_;
    private RTIambassador rtiamb_;
@@ -89,9 +91,11 @@ public class HLAFederateThread extends Thread implements Runnable {
 
       // Objects
       receiveSolarSystem.performObjectPreExecution(rtiamb_, fedamb_, regionHandleSet);
-
+      receiveStarField.performObjectPreExecution(rtiamb_, fedamb_, regionHandleSet);
+      
       // Interactions
       receivePlanetHasCompletedAnOrbit.performObjectPreExecution(rtiamb_, fedamb_, regionHandleSet);
+      receiveStarHasLeftStarField.performObjectPreExecution(rtiamb_, fedamb_, regionHandleSet);
 
       initialized = true;
 

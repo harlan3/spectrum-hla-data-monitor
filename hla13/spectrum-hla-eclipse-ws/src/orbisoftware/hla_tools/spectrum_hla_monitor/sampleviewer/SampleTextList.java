@@ -46,7 +46,7 @@ public class SampleTextList extends JTextPane {
    }
    
    // Maximum length of buffer
-   private int MAX_BUFFER = 102400;
+   private int MAX_BUFFER = 262144;
    
    // Remove first 20% of buffer when MAX_BUFFER is reached
    private double BUFFER_REDUCTION = 0.2;

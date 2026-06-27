@@ -44,7 +44,13 @@ public class CommonFederateAmbassador extends NullFederateAmbassador {
 
          String className = rtiAmb.getObjectClassName(instanceHandleToClassHandleMap.get(Integer.valueOf(theObject).hashCode()));
 
-         if (className.equals("SolarSystem") || className.endsWith(".SolarSystem")) {
+         if (className.equals("StarField")) {
+            if (debug)
+               System.out.println("calling ReceiveStarfield.receiveAttributeUpdateCallback");
+            ReceiveStarField.getInstance().receiveAttributeUpdateCallback(theAttributes, userSuppliedTag);
+         }
+         
+         if (className.equals("SolarSystem")) {
             if (debug)
                System.out.println("calling ReceiveSolarSystem.receiveAttributeUpdateCallback");
             ReceiveSolarSystem.getInstance().receiveAttributeUpdateCallback(theAttributes, userSuppliedTag);
@@ -63,7 +69,13 @@ public class CommonFederateAmbassador extends NullFederateAmbassador {
 
          String className = rtiAmb.getInteractionClassName(interactionClass);
 
-         if (className.equals("PlanetHasCompletedAnOrbit") || className.endsWith(".PlanetHasCompletedAnOrbit")) {
+         if (className.equals("StarHasLeftStarField")) {
+            if (debug)
+               System.out.println("calling ReceiveStarHasLeftStarfield.receiveInteractionCallback");
+               ReceiveStarHasLeftStarField.getInstance().receiveInteractionCallback(theParameters, userSuppliedTag);
+         }
+         
+         if (className.equals("PlanetHasCompletedAnOrbit")) {
             if (debug)
                System.out.println("calling ReceivePlanetHasCompletedAnOrbit.receiveInteractionCallback");
             ReceivePlanetHasCompletedAnOrbit.getInstance().receiveInteractionCallback(theParameters, userSuppliedTag);

@@ -7,6 +7,6 @@ set PATH=%PATH%;%RTI_LIB_HOME%;%JAVA_HOME%\bin;
 set RTI_RID_FILE=C:\CDR\Data\default.rid
 
 REM Add the required jars to classpath
-set CP=.\dist\spectrum-hla-data-monitor.jar;.\lib\outline.jar;.\lib\gson-1.7.jar;C:\rtis_D39\lib\win64_vc++-14.0\rtis13.jar
+set CP=.\dist\spectrum-hla-data-monitor.jar;./lib/hla13_fom_objs.jar;.\lib\outline.jar;.\lib\gson-1.7.jar;C:\rtis_D39\lib\win64_vc++-14.0\rtis13.jar
 
 java -cp %CP% orbisoftware.hla_tools.spectrum_hla_monitor.MainApplication %*

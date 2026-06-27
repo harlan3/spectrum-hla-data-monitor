@@ -7,6 +7,6 @@ set PATH=%PATH%;%RTI_LIB_HOME%;%JAVA_HOME%\bin;
 set RTI_RID_FILE=C:\CDR\Data\default.rid
 
 REM Add the required jars to classpath
-set CP=.\dist\solar_system.jar;C:\rtis_D39\lib\win64_vc++-14.0\rtis13.jar
+set CP=.\dist\solar_system.jar;.\lib\hla13_fom_objs.jar;C:\rtis_D39\lib\win64_vc++-14.0\rtis13.jar
 
 java -cp %CP% orbisoftware.hlatools.spectrumhlamonitor.solarsystemdemo.MainApplication %*

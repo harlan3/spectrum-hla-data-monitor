@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<doc>
+<metaData>
+   <attributes>Stars</attributes>
+   <attributesLength>1</attributesLength>
+</metaData>
+<node ID="30b56467-074f-451f-8d98-1ff589ccb4e5" TEXT="StarField" className="StarField_db5867775c835118_Cont" classHandle="ObjectRoot.StarField" FOLDED="true">
+   <node ID="383d86fb-88af-4a7f-a748-1b10d63fe0f3" TEXT="StarField" path="ObjectRoot.StarField" FOM_LINE_NUMBER="" FOLDED="true">
+      <node ID="eeeb720ce7cc33b7" TEXT="StarTypeArray Stars" TID="Array" classtype="StarType" cardinality="571" encoding="HLAfixedArray" FOM_LINE_NUMBER="" FOLDED="true">
+         <node ID="29d357ddb9bf084" TEXT="StarType starType" TID="FixedRecord" FOM_LINE_NUMBER="" FOLDED="true">
+            <node ID="dd93e407c4577dbb" TEXT="HLAinteger32BE starID" TID="Basic" FOM_LINE_NUMBER="" FOLDED="true">
+            </node>
+            <node ID="6cf4bf96f5de7a3e" TEXT="HLAinteger32BE baseSize" TID="Basic" FOM_LINE_NUMBER="" FOLDED="true">
+            </node>
+            <node ID="57276c8670cd6407" TEXT="HLAfloat64BE xpos" TID="Basic" FOM_LINE_NUMBER="" FOLDED="true">
+            </node>
+            <node ID="cec9d196b9f78fda" TEXT="HLAfloat64BE ypos" TID="Basic" FOM_LINE_NUMBER="" FOLDED="true">
+            </node>
+            <node ID="baac6f24fd069c2e" TEXT="HLAfloat64BE projX" TID="Basic" FOM_LINE_NUMBER="" FOLDED="true">
+            </node>
+            <node ID="a02b9b8ce42913a2" TEXT="HLAfloat64BE projY" TID="Basic" FOM_LINE_NUMBER="" FOLDED="true">
+            </node>
+            <node ID="33fe42bcc7a2d3ff" TEXT="HLAfloat64BE projZ" TID="Basic" FOM_LINE_NUMBER="" FOLDED="true">
+            </node>
+            <node ID="a85613d8cbee6a6b" TEXT="HLAfloat64BE size" TID="Basic" FOM_LINE_NUMBER="" FOLDED="true">
+            </node>
+            <node ID="80cb238ad3a0db6b" TEXT="HLAfloat64BE speed" TID="Basic" FOM_LINE_NUMBER="" FOLDED="true">
+            </node>
+            <node ID="2361c3ec77208647" TEXT="HLAfloat64BE blinkSpeed" TID="Basic" FOM_LINE_NUMBER="" FOLDED="true">
+            </node>
+            <node ID="5b88ecfae23ed45d" TEXT="HLAfloat64BE blinkPhase" TID="Basic" FOM_LINE_NUMBER="" FOLDED="true">
+            </node>
+            <node ID="6f34eabbf83915ef" TEXT="HLAfloat64BE alpha" TID="Basic" FOM_LINE_NUMBER="" FOLDED="true">
+            </node>
+         </node>
+      </node>
+   </node>
+</node>
+</doc>

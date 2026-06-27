@@ -25,10 +25,9 @@
    <target name="compile" depends="clean, makedir">
       <javac srcdir="${src.dir}" destdir="${build.dir}" source="17" target="17" debuglevel="${debuglevel}">
          <classpath>
+            <pathelement location="./lib/hla1516_fom_objs.jar"/>
             <pathelement location="./lib/outline.jar"/>
             <pathelement location="./lib/gson-1.7.jar"/>        
-            <pathelement location="./lib/container_classes.jar"/>
-            <pathelement location="./lib/encoding_classes.jar"/>
             <pathelement location="C:\rtis_D39\lib\win64_vc++-14.0\rtis1516e.jar"/>
             <!-- <pathelement location="/rtis_D39/lib/x86_64_g++-11.2/rtis1516e.jar"/> -->
          </classpath>

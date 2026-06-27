@@ -1,0 +1,38 @@
+(FED
+
+  (Federation SolarSystem)
+  (FEDversion v1.3)
+  (Description "Example FOM for Celestial Bodies Demos")
+  (POC "Mr. Harlan Murphy")
+  (POCEmail "harlan3@hotmail.com")
+  
+  (objects
+    (class ObjectRoot
+      (class StarField
+        (attribute Stars best_effort receive)
+          ; hla13 dataType=StarTypeArray; semantics=Starfield star data
+      )
+      (class SolarSystem
+        (attribute Planets best_effort receive)
+          ; hla13 dataType=PlanetTypeArray; semantics=Solar system planet data
+      )
+    )
+  )
+  
+  (interactions
+    (class InteractionRoot best_effort receive
+      (class StarHasLeftStarField best_effort receive
+        (parameter StarID)
+          ; hla13 dataType=HLAinteger32BE; semantics=ID of the star that has left the starfield
+        (parameter StarName)
+          ; hla13 dataType=HLAASCIIstring; semantics=Name of the star that has left the starfield
+      )
+      (class PlanetHasCompletedAnOrbit best_effort receive
+        (parameter PlanetID)
+          ; hla13 dataType=HLAinteger32BE; semantics=ID of the planet that has completed an orbit
+        (parameter PlanetName)
+          ; hla13 dataType=HLAASCIIstring; semantics=Name of the planet that has completed an orbit
+      )
+    )
+  )
+)
