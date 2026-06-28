@@ -26,7 +26,8 @@
       <javac srcdir="${src.dir}" destdir="${build.dir}" source="17" target="17" debuglevel="${debuglevel}">
          <classpath>
             <pathelement location="./lib/outline.jar"/>
-            <pathelement location="./lib/gson-1.7.jar"/>
+            <pathelement location="./lib/gson-2.14.1.jar"/>
+            <pathelement location="./lib/org-json.jar"/>
             <pathelement location="./lib/hla13_fom_objs.jar"/>
             <pathelement location="C:\rtis_D39\lib\win64_vc++-14.0\rtis13.jar"/>
             <!-- <pathelement location="/rtis_D39/lib/x86_64_g++-11.2/rtis13.jar"/> -->
