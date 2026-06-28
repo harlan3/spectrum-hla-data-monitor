@@ -9,5 +9,6 @@
 	<classpathentry kind="lib" path="lib/outline.jar"/>
 	<classpathentry kind="lib" path="lib/gson-1.7.jar"/>
 	<classpathentry kind="lib" path="C:/rtis_D39/lib/win64_vc++-14.0/rtis13.jar"/>
+	<classpathentry kind="lib" path="lib/hla13_fom_objs.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
