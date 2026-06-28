@@ -25,43 +25,113 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.Queue;
+import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.atomic.AtomicInteger;
+
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
+import javax.swing.Timer;
 
 import orbisoftware.hla_tools.spectrum_hla_monitor.HLASamples;
 import orbisoftware.hla_tools.spectrum_hla_monitor.hla_receiver.ReceiveQueue;
 
 public class ReceiveListGUI implements PropertyChangeListener, ActionListener {
 
-	public ReceiveQueue receiveQueue = new ReceiveQueue();
+   private static final int MAX_DISPLAY_ENTRIES = 25;
 
-	private DefaultListModel<String> model = new DefaultListModel<>();
-	public JList<String> displayList = new JList<String>(model);
+   public ReceiveQueue receiveQueue = new ReceiveQueue();
 
-	public ReceiveListGUI() {
+   private final DefaultListModel<String> model = new DefaultListModel<>();
+   public final JList<String> displayList = new JList<>(model);
 
-	}
+   /*
+    * Property-change events may arrive from an HLA receiver thread.  Do not
+    * modify DefaultListModel from that thread: Swing components and their
+    * models must be changed only on the Event Dispatch Thread (EDT).
+    */
+   private final Queue<String> pendingDisplayEntries = new ConcurrentLinkedQueue<>();
+   private final AtomicInteger reservedDisplayEntries = new AtomicInteger();
+   private final Timer displayListRefreshTimer;
+
+   public ReceiveListGUI() {
+
+      // Swing Timer callbacks execute on the EDT every 100 ms.
+      displayListRefreshTimer = new Timer(100, new ActionListener() {
+         @Override
+         public void actionPerformed(ActionEvent e) {
+            refreshDisplayList();
+         }
+      });
+      displayListRefreshTimer.setCoalesce(true);
+      displayListRefreshTimer.start();
+   }
 
    public void propertyChange(PropertyChangeEvent evt) {
 
-      if (evt.getPropertyName().toString().equals("hlaReadEvent") && (model.size() < 25)) {
+      if (!"hlaReadEvent".equals(evt.getPropertyName())) {
+         return;
+      }
 
-         synchronized (receiveQueue) {
+      /*
+       * Reserve one of the 25 display slots before modifying either queue.
+       * This preserves the original limit even when receiver events arrive
+       * faster than the 100 ms UI refresh timer.
+       */
+      while (true) {
+         int entryCount = reservedDisplayEntries.get();
 
-            receiveQueue.pushBack((HLASamples) evt.getNewValue());
-            receiveQueue.notify();
+         if (entryCount >= MAX_DISPLAY_ENTRIES) {
+            return;
+         }
 
-            HLASamples samples = (HLASamples) evt.getNewValue();
-
-            model.addElement("TimeStamp: " + Long.toString(samples.sampleReadTime));
+         if (reservedDisplayEntries.compareAndSet(entryCount, entryCount + 1)) {
+            break;
          }
       }
+
+      HLASamples samples = (HLASamples) evt.getNewValue();
+
+      synchronized (receiveQueue) {
+         receiveQueue.pushBack(samples);
+         receiveQueue.notify();
+      }
+
+      // Queue the text only. The timer updates the Swing list model on the EDT.
+      pendingDisplayEntries.offer(
+            "TimeStamp: " + Long.toString(samples.sampleReadTime));
    }
-	
-	@Override
-	public void actionPerformed(ActionEvent e) {
-	   
-	   receiveQueue.clear();
-	   model.clear();
-	}
+
+   /**
+    * Runs on the EDT, draining received entries into the displayed list.
+    */
+   private void refreshDisplayList() {
+
+      while (model.getSize() < MAX_DISPLAY_ENTRIES) {
+         String entry = pendingDisplayEntries.poll();
+
+         if (entry == null) {
+            break;
+         }
+
+         model.addElement(entry);
+      }
+
+      displayList.revalidate();
+      displayList.repaint();
+   }
+
+   @Override
+   public void actionPerformed(ActionEvent e) {
+
+      synchronized (receiveQueue) {
+         receiveQueue.clear();
+      }
+
+      pendingDisplayEntries.clear();
+      reservedDisplayEntries.set(0);
+      model.clear();
+      displayList.revalidate();
+      displayList.repaint();
+   }
 }

@@ -25,9 +25,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.util.Random;
-
 import orbisoftware.hla13_containers.Interactions.StarHasLeftStarField_bd6b9371adddafc6_Cont.StarHasLeftStarField_bd6b9371adddafc6_Cont;
-import orbisoftware.hlatools.spectrumhlamonitor.hla_sender.PublishStarField;
 import orbisoftware.hlatools.spectrumhlamonitor.hla_sender.PublishStarHasLeftStarField;
 
 public class StarModel {
