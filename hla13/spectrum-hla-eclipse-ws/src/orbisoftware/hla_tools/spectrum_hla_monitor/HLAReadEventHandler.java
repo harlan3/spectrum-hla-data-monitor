@@ -35,7 +35,9 @@ import javax.swing.SwingUtilities;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-import com.ecollege.gson.GsonExt;
+import org.json.JSONObject;
+import org.json.XML;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -150,8 +152,8 @@ public class HLAReadEventHandler extends Thread implements
                         @Override
                         public void run() {
                            
-                           final String xml = GsonExt.toXml(
-                                 gson.toJson(xmlReadEvent.seqHolder));
+                           JSONObject jsonObject = new JSONObject(gson.toJson(xmlReadEvent.seqHolder));
+                           final String xml = XML.toString(jsonObject, "seqHolder");
    
                            /*
                             * Swing components must only be updated on the Event

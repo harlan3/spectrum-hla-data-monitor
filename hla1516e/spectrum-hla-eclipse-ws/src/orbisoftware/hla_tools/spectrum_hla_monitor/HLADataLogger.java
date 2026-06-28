@@ -32,7 +32,10 @@ import java.util.List;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
-import com.ecollege.gson.GsonExt;
+import org.json.JSONObject;
+import org.json.XML;
+
+//import com.ecollege.gson.GsonExt;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -97,7 +100,10 @@ public class HLADataLogger extends Thread implements PropertyChangeListener {
                Gson gson = new GsonBuilder().setPrettyPrinting()
                      .serializeNulls().serializeSpecialFloatingPointValues()
                      .create();
-               String xml = GsonExt.toXml(gson.toJson(hlaSample));
+               
+               JSONObject jsonObject = new JSONObject(gson.toJson(hlaSample));
+               final String xml = XML.toString(jsonObject, "seqHolder");
+               
                dataLoggerWriter.write(xml);
             } catch (Exception e) {
                e.printStackTrace();
