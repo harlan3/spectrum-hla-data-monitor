@@ -27,8 +27,11 @@ import java.lang.reflect.Method;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingQueue;
 
+import javax.swing.SwingUtilities;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -49,6 +52,13 @@ public class HLAReadEventHandler extends Thread implements
    private String OBJ_TO_SYM_MAP_METHOD = "objToSymMap";
    private Class<?> oricSymbolMapClass = null;
    public ReceiveListGUI receiveListGUI = null;
+
+   /*
+    * Serializes XML conversion on a worker thread so the Swing Event
+    * Dispatch Thread is never blocked by Gson/GsonExt processing.
+    */
+   private final ExecutorService xmlConversionExecutor =
+         Executors.newSingleThreadExecutor();
    
    public HLAReadEventHandler(HLATopic hlaTopic) {
 
@@ -102,7 +112,7 @@ public class HLAReadEventHandler extends Thread implements
 
    public void run() {
 
-      Gson gson = new GsonBuilder().setPrettyPrinting().serializeNulls()
+      final Gson gson = new GsonBuilder().setPrettyPrinting().serializeNulls()
             .serializeSpecialFloatingPointValues().create();
 
       while (!hlaTopic.readEventHandlerShutdownComplete) {
@@ -126,16 +136,51 @@ public class HLAReadEventHandler extends Thread implements
                OricSymbolMap oricSymMap = new OricSymbolMap();
                HLASamples readEvent = readEventList.remove(0); // Read the next sample from the linked list
                
-               oricSymbolMapClass = oricSymMap.getClass();
-               Class<?>[] methodTypeParams = { Object.class };
-               Method objToSymMap = oricSymbolMapClass.getMethod(OBJ_TO_SYM_MAP_METHOD, methodTypeParams);
-               Object[] methodParams = { readEvent.seqHolder };
-               objToSymMap.invoke(oricSymMap, methodParams);
-
                if (hlaTopic.viewMode == ViewMode.TEXT_LIST) {
 
-                  String xml = GsonExt.toXml(gson.toJson(readEvent.seqHolder));
-                  hlaTopic.sampleViewerGUI.updateTextTable(xml);
+                  final HLASamples xmlReadEvent = readEvent;
+
+                  if (hlaTopic.autoUpdate) {
+                     
+                     /*
+                      * Gson JSON serialization and GsonExt XML conversion can be
+                      * expensive. Run them on the dedicated background executor.
+                      */
+                     xmlConversionExecutor.submit(new Runnable() {
+                        @Override
+                        public void run() {
+                           
+                           final String xml = GsonExt.toXml(
+                                 gson.toJson(xmlReadEvent.seqHolder));
+   
+                           /*
+                            * Swing components must only be updated on the Event
+                            * Dispatch Thread.
+                            */
+                           SwingUtilities.invokeLater(new Runnable() {
+                              @Override
+                              public void run() {
+                                 if (!hlaTopic.readEventHandlerShutdownComplete) {
+                                    hlaTopic.sampleViewerGUI.updateTextTable(xml);
+                                 }
+                              }
+                           });
+                        }
+                     });
+                     
+                     if (hlaTopic.name.startsWith("StarField")) {
+                        
+                        try {
+                              Thread.sleep(30000); // Delay 30 seconds to offload the CPU
+                        } catch (InterruptedException e) { }
+                        
+                        readEventList.clear();
+                     }
+                  }
+                  
+                  try {
+                     Thread.sleep(100);
+                  } catch (InterruptedException e) { }
                }
                
             } catch (Exception e) {
@@ -146,12 +191,11 @@ public class HLAReadEventHandler extends Thread implements
    }
 
    public void shutdownReq() {
-      this.interrupt();
+      hlaTopic.readEventHandlerShutdownComplete = true;
    }
 
    private void shutdown() {
       queue.clear();
       readEventList.clear();
-      hlaTopic.readEventHandlerShutdownComplete = true;
    }
 }

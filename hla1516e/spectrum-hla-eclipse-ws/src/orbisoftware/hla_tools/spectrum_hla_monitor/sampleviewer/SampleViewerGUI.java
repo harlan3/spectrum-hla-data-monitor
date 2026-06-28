@@ -471,7 +471,8 @@ public class SampleViewerGUI implements ActionListener {
          public void itemStateChanged(ItemEvent e) {
             
             boolean selected = (e.getStateChange() == ItemEvent.SELECTED);
-
+            hlaTopic.autoUpdate = selected;
+            
             try {
 
                Class<?> singletonClass = Class.forName(hlaTopic.receiverType);
