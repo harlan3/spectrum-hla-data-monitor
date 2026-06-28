@@ -12,7 +12,7 @@ export VM_OPTIONS="-Djava.library.path=$RTI_LIB_HOME"
 export PATH=$JAVA_HOME/bin:$RTI_LIB_HOME
 
 # Add the required jars to classpath
-export CP="./dist/solar_system.jar:./lib/container_classes.jar:./lib/encoding_classes.jar:/rtis_D39/lib/x86_64_g++-11.2/rtis13.jar"
+export CP="./dist/solar_system.jar:./lib/hla13_fom_objs.jar:/rtis_D39/lib/x86_64_g++-11.2/rtis13.jar"
 
 for i in {1..5}; do
 	$JAVA_CMD $VM_OPTIONS -cp $CP orbisoftware.hlatools.spectrumhlamonitor.solarsystemdemo.MainApplication "$@$i" &

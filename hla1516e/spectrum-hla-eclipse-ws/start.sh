@@ -12,6 +12,6 @@ export VM_OPTIONS="-Djava.library.path=$RTI_LIB_HOME"
 export PATH=$JAVA_HOME/bin:$RTI_LIB_HOME
 
 # Add the required jars to classpath
-export CP="./dist/spectrum-hla-data-monitor.jar:./lib/outline.jar:./lib/gson-1.7.jar:./lib/container_classes.jar:./lib/encoding_classes.jar:/rtis_D39/lib/x86_64_g++-11.2/rtis1516e.jar"
+export CP="./dist/spectrum-hla-data-monitor.jar:./lib/outline.jar:./lib/gson-1.7.jar:./lib/hla1516_fom_objs.jar:/rtis_D39/lib/x86_64_g++-11.2/rtis1516e.jar"
 
 $JAVA_CMD $VM_OPTIONS -cp $CP orbisoftware.hla_tools.spectrum_hla_monitor.MainApplication "$@"
