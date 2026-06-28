@@ -179,7 +179,7 @@ public class HLAReadEventHandler extends Thread implements
                   }
                   
                   try {
-                     Thread.sleep(100);
+                     Thread.sleep(10);
                   } catch (InterruptedException e) { }
                }
                
