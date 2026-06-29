@@ -6,6 +6,15 @@ Sample data which consists of the payload of HLA objects and interactions can be
 ## Checkout from github
 git clone https://github.com/harlan3/spectrum-hla-data-monitor.git
 
+## Compiling the HLA-1.3 or HLA-1516e starfield project in Windows or Linux
+in a command window, type the following depending on whether you are either using either HLA-1.3 or HLA-1516e mode:  
+1. - cd spectrum-hla-data-monitor\hla13\starfield-eclipse-ws (for HLA-1.3)   
+   - cd spectrum-hla-data-monitor\hla1516e\starfield-eclipse-ws (for HLA-1516e)   
+1. tweak build.xml to point to the correct rtis13.jar or rtis1516e.jar depending on whether you are using HLA-1.3 or HLA-1516e modes.  
+1. ant clean  
+1. ant  
+1. tweak start.cmd (Windows) or start.sh (Linux) to point to the correct RTI_LIB_HOME, JAVA_HOME, RTI_RID_FILE, and rtis13.jar or rtis1516e.jar.
+
 ## Compiling the HLA-1.3 or HLA-1516e solarsystem project in Windows or Linux
 in a command window, type the following depending on whether you are either using either HLA-1.3 or HLA-1516e mode:  
 1. - cd spectrum-hla-data-monitor\hla13\solarsystem-eclipse-ws (for HLA-1.3)   
