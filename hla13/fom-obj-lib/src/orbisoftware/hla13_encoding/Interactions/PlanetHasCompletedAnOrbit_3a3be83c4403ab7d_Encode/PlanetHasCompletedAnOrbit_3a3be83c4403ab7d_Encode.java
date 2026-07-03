@@ -1,5 +1,6 @@
 package orbisoftware.hla13_encoding.Interactions.PlanetHasCompletedAnOrbit_3a3be83c4403ab7d_Encode;
 
+import java.util.Iterator;
 import java.util.Map;
 import java.util.HashMap;
 
@@ -91,25 +92,25 @@ public class PlanetHasCompletedAnOrbit_3a3be83c4403ab7d_Encode {
    }
 
    // Class Variable
-   private HLAASCIIstringImp_Encode planetName = new HLAASCIIstringImp_Encode();
+   private NullTerminatedASCIIStringImp_Encode planetName = new NullTerminatedASCIIStringImp_Encode();
 
    // Setter
-   public void setPlanetName(HLAASCIIstringImp_Encode planetName) {
+   public void setPlanetName(NullTerminatedASCIIStringImp_Encode planetName) {
       this.planetName = planetName;
    }
 
    // Getter
-   public HLAASCIIstringImp_Encode getPlanetName() {
+   public NullTerminatedASCIIStringImp_Encode getPlanetName() {
       return planetName;
    }
 
    // Encode outgoing data obtained from source class variable definitions to destination SuppliedParameters
    public void encode(SuppliedParameters theParameterValues) {
 
-      // ID: ee8abadf5f871977  Basic
+      // ID: 50254c7d5c265305  Basic
       theParameterValues.add(planetIDParameterHandle, utilities.getBytesFromInteger(planetID));
 
-      // ID: c2477ca15c890656  Array
+      // ID: d3db1363e7f61374  Array
       if (planetName != null) {
 
          DynamicBuffer dynamicBuffer = new DynamicBuffer();
@@ -119,43 +120,44 @@ public class PlanetHasCompletedAnOrbit_3a3be83c4403ab7d_Encode {
 
    }
 
-   // Decode incoming data obtained from source ReceivedInteraction to destination class variable definitions
-   public void decode(ReceivedInteraction theParameterValues) {
+	// Decode incoming data obtained from source ReceivedInteraction to destination
+	// class variable definitions
+	public void decode(ReceivedInteraction theParameterValues) {
 
-      try {
+		try {
 
-         for (int i = 0; i < theParameterValues.size(); i++) {
-            int parameterHandle = theParameterValues.getParameterHandle(i);
-            currentValue = theParameterValues.getValue(i);
+			for (int i = 0; i < theParameterValues.size(); i++) {
+				int parameterHandle = theParameterValues.getParameterHandle(i);
+				currentValue = theParameterValues.getValue(i);
 
-            Runnable decodeAction = decodeActions.get(parameterHandle);
-            if (decodeAction != null)
-               decodeAction.run();
-         }
-      } catch (Exception e) {
-         e.printStackTrace();
-      }
-   }
+				Runnable decodeAction = decodeActions.get(parameterHandle);
+				if (decodeAction != null)
+					decodeAction.run();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
-   // ID: ee8abadf5f871977  Basic
-   // Decode incoming data byte array to destination class variable definitions
-   private void planetIDDecode() {
+	// ID: ee8abadf5f871977 Basic
+	// Decode incoming data byte array to destination class variable definitions
+	private void planetIDDecode() {
 
-      DynamicBuffer dynamicBuffer = new DynamicBuffer();
-      dynamicBuffer.clear();
-      dynamicBuffer.put(currentValue);
-      planetID = utilities.getIntegerFromBytes(dynamicBuffer.getWrittenBytes());
-   }
+		DynamicBuffer dynamicBuffer = new DynamicBuffer();
+		dynamicBuffer.clear();
+		dynamicBuffer.put(currentValue);
+		planetID = utilities.getIntegerFromBytes(dynamicBuffer.getWrittenBytes());
+	}
 
-   // ID: c2477ca15c890656  Array
-   // Decode incoming data byte array to destination class variable definitions
-   private void planetNameDecode() {
+	// ID: c2477ca15c890656 Array
+	// Decode incoming data byte array to destination class variable definitions
+	private void planetNameDecode() {
 
-      DynamicBuffer dynamicBuffer = new DynamicBuffer();
-      dynamicBuffer.clear();
-      dynamicBuffer.put(currentValue);
-      dynamicBuffer.flip();
-      planetName.decode(dynamicBuffer, planetName.getAlignment());
-   }
+		DynamicBuffer dynamicBuffer = new DynamicBuffer();
+		dynamicBuffer.clear();
+		dynamicBuffer.put(currentValue);
+		dynamicBuffer.flip();
+		planetName.decode(dynamicBuffer, planetName.getAlignment());
+	}
 
 }

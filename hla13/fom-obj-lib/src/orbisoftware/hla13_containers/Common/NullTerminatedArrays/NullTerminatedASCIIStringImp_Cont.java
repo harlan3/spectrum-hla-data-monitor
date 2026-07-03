@@ -1,7 +1,4 @@
-package orbisoftware.hla13_containers.Interactions.StarHasLeftStarField_bd6b9371adddafc6_Cont;
-
-import java.util.Iterator;
-import java.util.Map;
+package orbisoftware.hla13_containers.Common.NullTerminatedArrays;
 
 import orbisoftware.hla13_containers.Common.Enums.*;
 import orbisoftware.hla13_containers.Common.FixedArrays.*;
@@ -14,8 +11,12 @@ import orbisoftware.hla13_containers.Common.VariantRecords.*;
 import orbisoftware.hla13_containers.Common.Misc.*;
 
 @SuppressWarnings("unused")
-public class StarHasLeftStarField_bd6b9371adddafc6_Cont {
+public class NullTerminatedASCIIStringImp_Cont {
+   // Fields
+   public String value = new String("#");
 
-   public int starID = 0;
-   public NullTerminatedASCIIStringImp_Cont starName = new NullTerminatedASCIIStringImp_Cont();
+   // Constructor
+   public NullTerminatedASCIIStringImp_Cont() {
+
+   }
 }

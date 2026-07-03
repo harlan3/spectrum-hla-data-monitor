@@ -17,5 +17,5 @@ import orbisoftware.hla13_containers.Common.Misc.*;
 public class PlanetHasCompletedAnOrbit_3a3be83c4403ab7d_Cont {
 
    public int planetID = 0;
-   public HLAASCIIstringImp_Cont planetName = new HLAASCIIstringImp_Cont();
+   public NullTerminatedASCIIStringImp_Cont planetName = new NullTerminatedASCIIStringImp_Cont();
 }

@@ -1,5 +1,6 @@
 package orbisoftware.hla13_encoding.Interactions.StarHasLeftStarField_bd6b9371adddafc6_Encode;
 
+import java.util.Iterator;
 import java.util.Map;
 import java.util.HashMap;
 
@@ -91,25 +92,25 @@ public class StarHasLeftStarField_bd6b9371adddafc6_Encode {
    }
 
    // Class Variable
-   private HLAASCIIstringImp_Encode starName = new HLAASCIIstringImp_Encode();
+   private NullTerminatedASCIIStringImp_Encode starName = new NullTerminatedASCIIStringImp_Encode();
 
    // Setter
-   public void setStarName(HLAASCIIstringImp_Encode starName) {
+   public void setStarName(NullTerminatedASCIIStringImp_Encode starName) {
       this.starName = starName;
    }
 
    // Getter
-   public HLAASCIIstringImp_Encode getStarName() {
+   public NullTerminatedASCIIStringImp_Encode getStarName() {
       return starName;
    }
 
-   // Encode outgoing data obtained from source class variable definitions to destination SuppliedParameters
+   // Encode outgoing data obtained from source class variable definitions to destination ParameterHandleValueMap
    public void encode(SuppliedParameters theParameterValues) {
 
-      // ID: 14bff4c3499df288  Basic
+      // ID: 8eadbf9b0552f322  Basic
       theParameterValues.add(starIDParameterHandle, utilities.getBytesFromInteger(starID));
 
-      // ID: a5da5bf1d0283e8f  Array
+      // ID: 295856e9bd1c2541  Array
       if (starName != null) {
 
          DynamicBuffer dynamicBuffer = new DynamicBuffer();
@@ -119,43 +120,43 @@ public class StarHasLeftStarField_bd6b9371adddafc6_Encode {
 
    }
 
-   // Decode incoming data obtained from source ReceivedInteraction to destination class variable definitions
+   // Decode incoming data obtained from source ParameterHandleValueMap to destination class variable definitions
    public void decode(ReceivedInteraction theParameterValues) {
 
-      try {
+		try {
 
-         for (int i = 0; i < theParameterValues.size(); i++) {
-            int parameterHandle = theParameterValues.getParameterHandle(i);
-            currentValue = theParameterValues.getValue(i);
+			for (int i = 0; i < theParameterValues.size(); i++) {
+				int parameterHandle = theParameterValues.getParameterHandle(i);
+				currentValue = theParameterValues.getValue(i);
 
-            Runnable decodeAction = decodeActions.get(parameterHandle);
-            if (decodeAction != null)
-               decodeAction.run();
-         }
-      } catch (Exception e) {
-         e.printStackTrace();
-      }
-   }
+				Runnable decodeAction = decodeActions.get(parameterHandle);
+				if (decodeAction != null)
+					decodeAction.run();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
-   // ID: 14bff4c3499df288  Basic
-   // Decode incoming data byte array to destination class variable definitions
-   private void starIDDecode() {
+	// ID: 14bff4c3499df288 Basic
+	// Decode incoming data byte array to destination class variable definitions
+	private void starIDDecode() {
 
-      DynamicBuffer dynamicBuffer = new DynamicBuffer();
-      dynamicBuffer.clear();
-      dynamicBuffer.put(currentValue);
-      starID = utilities.getIntegerFromBytes(dynamicBuffer.getWrittenBytes());
-   }
+		DynamicBuffer dynamicBuffer = new DynamicBuffer();
+		dynamicBuffer.clear();
+		dynamicBuffer.put(currentValue);
+		starID = utilities.getIntegerFromBytes(dynamicBuffer.getWrittenBytes());
+	}
 
-   // ID: a5da5bf1d0283e8f  Array
-   // Decode incoming data byte array to destination class variable definitions
-   private void starNameDecode() {
+	// ID: a5da5bf1d0283e8f Array
+	// Decode incoming data byte array to destination class variable definitions
+	private void starNameDecode() {
 
-      DynamicBuffer dynamicBuffer = new DynamicBuffer();
-      dynamicBuffer.clear();
-      dynamicBuffer.put(currentValue);
-      dynamicBuffer.flip();
-      starName.decode(dynamicBuffer, starName.getAlignment());
-   }
+		DynamicBuffer dynamicBuffer = new DynamicBuffer();
+		dynamicBuffer.clear();
+		dynamicBuffer.put(currentValue);
+		dynamicBuffer.flip();
+		starName.decode(dynamicBuffer, starName.getAlignment());
+	}
 
 }

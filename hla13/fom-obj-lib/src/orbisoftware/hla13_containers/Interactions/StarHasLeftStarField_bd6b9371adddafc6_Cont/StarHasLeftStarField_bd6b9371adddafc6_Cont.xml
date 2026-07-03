@@ -4,11 +4,11 @@
    <parameters>StarID, StarName</parameters>
    <parametersLength>2</parametersLength>
 </metaData>
-<node ID="09abedce-e2f0-4bae-8f1b-530fd2529d3c" TEXT="StarHasLeftStarField" className="StarHasLeftStarField_bd6b9371adddafc6_Cont" classHandle="InteractionRoot.StarHasLeftStarField" FOLDED="true">
-   <node ID="46613f34-0eee-4549-a891-202269374013" TEXT="StarHasLeftStarField" path="InteractionRoot.StarHasLeftStarField" FOM_LINE_NUMBER="" FOLDED="true">
-      <node ID="78727053b312716f" TEXT="HLAinteger32BE StarID" TID="Basic" FOM_LINE_NUMBER="" FOLDED="true">
+<node ID="5ae472c9-5ecd-47e3-bfbf-6030142a890b" TEXT="StarHasLeftStarField" className="StarHasLeftStarField_bd6b9371adddafc6_Cont" classHandle="HLAinteractionRoot.StarHasLeftStarField" FOLDED="true">
+   <node ID="a196e6d1-a924-4805-9e98-a0d9b2d8f4c3" TEXT="StarHasLeftStarField" path="HLAinteractionRoot.StarHasLeftStarField" FOM_LINE_NUMBER="" FOLDED="true">
+      <node ID="3ef1448c9adaaf06" TEXT="HLAinteger32BE StarID" TID="Basic" FOM_LINE_NUMBER="" FOLDED="true">
       </node>
-      <node ID="b7b61caf90e4fa17" TEXT="HLAASCIIstringImp StarName" TID="Array" classtype="HLAASCIIchar" cardinality="Dynamic" encoding="HLAvariableArray" FOM_LINE_NUMBER="" FOLDED="true">
+      <node ID="2be1f5fc69e0d7b4" TEXT="NullTerminatedASCIIStringImp StarName" TID="Array" classtype="HLAASCIIchar" cardinality="Dynamic" encoding="NullTerminatedASCIIString" FOM_LINE_NUMBER="" FOLDED="true">
       </node>
    </node>
 </node>

@@ -4,11 +4,11 @@
    <parameters>PlanetID, PlanetName</parameters>
    <parametersLength>2</parametersLength>
 </metaData>
-<node ID="413e1c18-65d9-407c-9a02-303284e157e3" TEXT="PlanetHasCompletedAnOrbit" className="PlanetHasCompletedAnOrbit_3a3be83c4403ab7d_Encode" classHandle="InteractionRoot.PlanetHasCompletedAnOrbit" FOLDED="true">
-   <node ID="9d2a2be9-a730-4352-8001-436ec23e9ef2" TEXT="PlanetHasCompletedAnOrbit" path="InteractionRoot.PlanetHasCompletedAnOrbit" FOM_LINE_NUMBER="" FOLDED="true">
-      <node ID="ee8abadf5f871977" TEXT="HLAinteger32BE PlanetID" TID="Basic" FOM_LINE_NUMBER="" FOLDED="true">
+<node ID="767c7485-d8f8-42e1-852e-02127f881a94" TEXT="PlanetHasCompletedAnOrbit" className="PlanetHasCompletedAnOrbit_3a3be83c4403ab7d_Encode" classHandle="HLAinteractionRoot.PlanetHasCompletedAnOrbit" FOLDED="true">
+   <node ID="cbe038c5-f9f7-46df-bc18-4ecffeedbc22" TEXT="PlanetHasCompletedAnOrbit" path="HLAinteractionRoot.PlanetHasCompletedAnOrbit" FOM_LINE_NUMBER="" FOLDED="true">
+      <node ID="50254c7d5c265305" TEXT="HLAinteger32BE PlanetID" TID="Basic" FOM_LINE_NUMBER="" FOLDED="true">
       </node>
-      <node ID="c2477ca15c890656" TEXT="HLAASCIIstringImp PlanetName" TID="Array" classtype="HLAASCIIchar" cardinality="Dynamic" encoding="HLAvariableArray" FOM_LINE_NUMBER="" FOLDED="true">
+      <node ID="d3db1363e7f61374" TEXT="NullTerminatedASCIIStringImp PlanetName" TID="Array" classtype="HLAASCIIchar" cardinality="Dynamic" encoding="NullTerminatedASCIIString" FOM_LINE_NUMBER="" FOLDED="true">
       </node>
    </node>
 </node>
