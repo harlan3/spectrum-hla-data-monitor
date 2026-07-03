@@ -26,7 +26,7 @@ import hla.rti.jlc.RtiFactoryFactory;
 import java.util.ArrayList;
 import java.util.Random;
 
-import orbisoftware.hla13_containers.Common.PrefixedStringLength.HLAASCIIstringImp_Cont;
+import orbisoftware.hla13_containers.Common.NullTerminatedArrays.NullTerminatedASCIIStringImp_Cont;
 import orbisoftware.hla13_containers.Interactions.PlanetHasCompletedAnOrbit_3a3be83c4403ab7d_Cont.PlanetHasCompletedAnOrbit_3a3be83c4403ab7d_Cont;
 import orbisoftware.hla13_encoding.Common.Enums.PlanetOrdinal_Encode;
 import orbisoftware.hla13_encoding.Common.FixedArrays.PlanetTypeArray_Encode;
@@ -120,7 +120,7 @@ public class PublishSolarSystem {
       if (updateCounter % 100 == 0) {
          
          PlanetHasCompletedAnOrbit_3a3be83c4403ab7d_Cont container = new PlanetHasCompletedAnOrbit_3a3be83c4403ab7d_Cont();
-         HLAASCIIstringImp_Cont planetName = new HLAASCIIstringImp_Cont();
+         NullTerminatedASCIIStringImp_Cont planetName = new NullTerminatedASCIIStringImp_Cont();
          Random random = new Random();
          int randomNum = random.nextInt(10);
          

@@ -12,6 +12,7 @@ import orbisoftware.hla13_encoding.Common.VariableArrays.*;
 import orbisoftware.hla13_encoding.Common.VariantRecords.*;
 import orbisoftware.hla13_encoding.Common.Misc.*;
 
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 
 @SuppressWarnings("unused")

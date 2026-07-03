@@ -26,7 +26,7 @@ import hla.rti.jlc.RtiFactory;
 import hla.rti.jlc.RtiFactoryFactory;
 
 import orbisoftware.hla13_containers.Interactions.PlanetHasCompletedAnOrbit_3a3be83c4403ab7d_Cont.PlanetHasCompletedAnOrbit_3a3be83c4403ab7d_Cont;
-import orbisoftware.hla13_encoding.Common.PrefixedStringLength.HLAASCIIstringImp_Encode;
+import orbisoftware.hla13_encoding.Common.NullTerminatedArrays.NullTerminatedASCIIStringImp_Encode;
 import orbisoftware.hla13_encoding.Interactions.PlanetHasCompletedAnOrbit_3a3be83c4403ab7d_Encode.PlanetHasCompletedAnOrbit_3a3be83c4403ab7d_Encode;
 import orbisoftware.hla_shared.Utilities;
 
@@ -102,9 +102,9 @@ public class PublishPlanetHasCompletedAnOrbit {
       
       planetHasCompletedAnOrbit.setPlanetID(container.planetID);
       
-      HLAASCIIstringImp_Encode hlaASCIIstringImp = new HLAASCIIstringImp_Encode();
-      hlaASCIIstringImp.setString(container.planetName.value);
-      planetHasCompletedAnOrbit.setPlanetName(hlaASCIIstringImp);
+      NullTerminatedASCIIStringImp_Encode asciistringImp = new NullTerminatedASCIIStringImp_Encode();
+      asciistringImp.setValue(container.planetName.value.getBytes());
+      planetHasCompletedAnOrbit.setPlanetName(asciistringImp);
  
       planetHasCompletedAnOrbit.encode(parameters);
 

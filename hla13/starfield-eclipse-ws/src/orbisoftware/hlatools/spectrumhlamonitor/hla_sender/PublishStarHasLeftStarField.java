@@ -24,7 +24,7 @@ import hla.rti.Region;
 import hla.rti.SuppliedParameters;
 import hla.rti.jlc.RtiFactoryFactory;
 import orbisoftware.hla13_containers.Interactions.StarHasLeftStarField_bd6b9371adddafc6_Cont.StarHasLeftStarField_bd6b9371adddafc6_Cont;
-import orbisoftware.hla13_encoding.Common.PrefixedStringLength.HLAASCIIstringImp_Encode;
+import orbisoftware.hla13_encoding.Common.NullTerminatedArrays.NullTerminatedASCIIStringImp_Encode;
 import orbisoftware.hla13_encoding.Interactions.StarHasLeftStarField_bd6b9371adddafc6_Encode.StarHasLeftStarField_bd6b9371adddafc6_Encode;
 import orbisoftware.hla_shared.Utilities;
 
@@ -90,9 +90,9 @@ public class PublishStarHasLeftStarField {
 
         starHasLeftStarField.setStarID(container.starID);
 
-        HLAASCIIstringImp_Encode hlaASCIIstringImp = new HLAASCIIstringImp_Encode();
-        hlaASCIIstringImp.setString(container.starName.value);
-        starHasLeftStarField.setStarName(hlaASCIIstringImp);
+        NullTerminatedASCIIStringImp_Encode nullTerminatedASCIIString = new NullTerminatedASCIIStringImp_Encode();
+        nullTerminatedASCIIString.setValue(container.starName.value.getBytes());
+        starHasLeftStarField.setStarName(nullTerminatedASCIIString);
 
         starHasLeftStarField.encode(parameters);
 
