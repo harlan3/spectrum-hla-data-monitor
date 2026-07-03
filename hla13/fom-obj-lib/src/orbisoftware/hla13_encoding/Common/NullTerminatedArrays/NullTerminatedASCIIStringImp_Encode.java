@@ -59,6 +59,18 @@ public class NullTerminatedASCIIStringImp_Encode {
       return value;
    }
 
+   // String Getter
+   public String getString() {
+
+      int length = 0;
+
+      while (length < value.length && value[length] != 0) {
+         length++;
+      }
+
+      return new String(value, 0, length, StandardCharsets.US_ASCII);
+   }
+
    // Encode outgoing data obtained from internal class representation into DynamicBuffer
    public void encode(DynamicBuffer buffer, int alignment) {
 
