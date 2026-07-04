@@ -25,13 +25,13 @@
         (parameter StarID)
           ; hla13 dataType=HLAinteger32BE; semantics=ID of the star that has left the starfield
         (parameter StarName)
-          ; hla13 dataType=HLAASCIIstring; semantics=Name of the star that has left the starfield
+          ; hla13 dataType=NullTerminatedASCIIString; semantics=Name of the star that has left the starfield
       )
       (class PlanetHasCompletedAnOrbit best_effort receive
         (parameter PlanetID)
           ; hla13 dataType=HLAinteger32BE; semantics=ID of the planet that has completed an orbit
         (parameter PlanetName)
-          ; hla13 dataType=HLAASCIIstring; semantics=Name of the planet that has completed an orbit
+          ; hla13 dataType=NullTerminatedASCIIString; semantics=Name of the planet that has completed an orbit
       )
     )
   )
