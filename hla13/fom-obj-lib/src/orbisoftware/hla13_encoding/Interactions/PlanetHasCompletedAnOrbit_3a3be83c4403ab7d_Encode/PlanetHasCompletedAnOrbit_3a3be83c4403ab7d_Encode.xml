@@ -8,7 +8,7 @@
    <node ID="cbe038c5-f9f7-46df-bc18-4ecffeedbc22" TEXT="PlanetHasCompletedAnOrbit" path="HLAinteractionRoot.PlanetHasCompletedAnOrbit" FOM_LINE_NUMBER="" FOLDED="true">
       <node ID="50254c7d5c265305" TEXT="HLAinteger32BE PlanetID" TID="Basic" FOM_LINE_NUMBER="" FOLDED="true">
       </node>
-      <node ID="d3db1363e7f61374" TEXT="NullTerminatedASCIIStringImp PlanetName" TID="Array" classtype="HLAASCIIchar" cardinality="Dynamic" encoding="NullTerminatedASCIIString" FOM_LINE_NUMBER="" FOLDED="true">
+      <node ID="d3db1363e7f61374" TEXT="NullTerminatedASCIIStringImp PlanetName" TID="Array" classtype="HLAASCIIchar" cardinality="Dynamic" encoding="RPRnullTerminatedArray" FOM_LINE_NUMBER="" FOLDED="true">
       </node>
    </node>
 </node>
