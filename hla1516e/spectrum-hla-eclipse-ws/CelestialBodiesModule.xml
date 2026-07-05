@@ -63,7 +63,7 @@
       <interactionClass>
          <name>HLAinteractionRoot</name>
          <interactionClass>
-            <name>StarHasLeftStarField</name>
+            <name>StarHasLeftStarField</name>                         
             <sharing>Publish</sharing>
             <transportation>HLAbestEffort</transportation>
             <order>TimeStamp</order>
@@ -92,7 +92,7 @@
             </parameter>
             <parameter>
                <name>PlanetName</name>
-               <dataType>HLAASCIIstring</dataType>
+               <dataType>NullTerminatedASCIIString</dataType>
                <semantics>Name of the planet that has completed an orbit</semantics>
             </parameter>
          </interactionClass>
@@ -184,6 +184,13 @@
             <cardinality>10</cardinality>
             <encoding>HLAfixedArray</encoding>
             <semantics>Array of planets</semantics>
+         </arrayData>
+         <arrayData>
+             <name>NullTerminatedASCIIString</name>
+             <dataType>HLAASCIIchar</dataType>
+             <cardinality>Dynamic</cardinality>
+             <encoding>RPRnullTerminatedArray</encoding>
+             <semantics>A null terminated string with no length field.</semantics>
          </arrayData>
       </arrayDataTypes>
       <fixedRecordDataTypes>
