@@ -7,6 +7,7 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="C:/rtis_D39/lib/win64_vc++-14.0/rtis1516e.jar"/>
-	<classpathentry kind="lib" path="lib/hla1516_fom_objs.jar"/>
+	<classpathentry kind="lib" path="lib/container_classes.jar"/>
+	<classpathentry kind="lib" path="lib/encoding_classes.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

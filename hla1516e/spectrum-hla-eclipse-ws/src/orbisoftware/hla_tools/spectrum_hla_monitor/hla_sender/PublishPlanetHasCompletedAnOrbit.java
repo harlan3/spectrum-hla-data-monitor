@@ -28,7 +28,7 @@ import hla.rti1516e.RegionHandleSet;
 import hla.rti1516e.RtiFactory;
 import hla.rti1516e.RtiFactoryFactory;
 import orbisoftware.hla_1516e_containers.Interactions.PlanetHasCompletedAnOrbit_3a3be83c4403ab7d_Cont.PlanetHasCompletedAnOrbit_3a3be83c4403ab7d_Cont;
-import orbisoftware.hla_1516e_encoding.Common.PrefixedStringLength.HLAASCIIstringImp_Encode;
+import orbisoftware.hla_1516e_encoding.Common.NullTerminatedArrays.NullTerminatedASCIIString_Encode;
 import orbisoftware.hla_1516e_encoding.Interactions.PlanetHasCompletedAnOrbit_3a3be83c4403ab7d_Encode.PlanetHasCompletedAnOrbit_3a3be83c4403ab7d_Encode;
 import orbisoftware.hla_shared.Utilities;
 
@@ -102,11 +102,14 @@ public class PublishPlanetHasCompletedAnOrbit {
          e.printStackTrace();
       }
       
+      
+      byte mybytes[] = container.planetName.value.getBytes();
+      
       planetHasCompletedAnOrbit.setPlanetID(container.planetID);
       
-      HLAASCIIstringImp_Encode hlaASCIIstringImp = new HLAASCIIstringImp_Encode();
-      hlaASCIIstringImp.setString(container.planetName.value);
-      planetHasCompletedAnOrbit.setPlanetName(hlaASCIIstringImp);
+      NullTerminatedASCIIString_Encode nullTerminatedString = new NullTerminatedASCIIString_Encode();
+      nullTerminatedString.setValue(container.planetName.value.getBytes());
+      planetHasCompletedAnOrbit.setPlanetName(nullTerminatedString);
  
       planetHasCompletedAnOrbit.encode(parameters);
 
