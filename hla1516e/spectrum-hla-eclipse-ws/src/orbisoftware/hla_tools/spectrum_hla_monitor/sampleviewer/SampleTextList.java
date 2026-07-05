@@ -24,10 +24,7 @@ package orbisoftware.hla_tools.spectrum_hla_monitor.sampleviewer;
 import java.awt.Color;
 import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
-
 import javax.swing.JTextPane;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
