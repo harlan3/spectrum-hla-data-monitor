@@ -24,7 +24,7 @@ Aldebaran
 Alderamin
 Aldhanab
 Aldhibah
-Áldu
+Aldu
 Aldulfin
 Alfarasalkamil
 Alfirk
@@ -81,7 +81,7 @@ Antares
 Antinous
 Apamvatsa
 Apdu
-Arcalís
+Arcalis
 Arcturus
 Arkab Posterior
 Arkab Prior
@@ -100,12 +100,12 @@ Atlas
 Atria
 Aurwandilsta
 Avior
-Axólotl
+Axolotl
 Ayeyarwady
 Azelfafage
 Azha
 Azmidi
-Añañuca
+Ananuca
 Bade
 Baekdu
 Bagu
@@ -114,7 +114,7 @@ Bake-eo
 Baltesha
 Barnard's Star
 Baten Kaitos
-Batsũ̀
+Batsu
 Beemim
 Beid
 Belel
@@ -122,7 +122,7 @@ Bellatrix
 Berehynia
 Betelgeuse
 Bharani
-Bibhā
+Bibha
 Bibing
 Biham
 Blaze Star
@@ -133,7 +133,7 @@ Brachium
 Bubup
 Buna
 Bunda
-Bélénos
+Belenos
 Calvera
 Canopus
 Capella
@@ -149,11 +149,11 @@ Chalawan
 Chamukuy
 Chaophraya
 Chara
-Chasoň
+Chason
 Chechia
 Chertan
 Citadelle
-Citalá
+Citala
 Cocibolca
 Copernicus
 Cor Caroli
@@ -179,7 +179,7 @@ Dombay
 Dschubba
 Dubhe
 Dziban
-Dìwö
+Diwo
 Ebla
 Edasich
 Electra
@@ -240,7 +240,7 @@ Homam
 Honores
 Horna
 Huagai
-Hunahpú
+Hunahpu
 Hunor
 Hydor
 Iklil
@@ -298,7 +298,7 @@ Lilii Borea
 Lionrock
 Lucilinburhuc
 Lumbung
-Lusitânia
+Lusitania
 Maasym
 Macondo
 Maenalus
@@ -354,8 +354,8 @@ Muphrid
 Muscida
 Musica
 Muspelheim
-Márohu
-Mönch
+Marohu
+Monch
 Naga
 Nahn
 Naledi
@@ -375,8 +375,8 @@ Nunki
 Nusakan
 Nushagak
 Nyamien
-Násti
-Nüchuang
+Nasti
+Nuchuang
 Ogma
 Okab
 Orkaria
@@ -430,7 +430,7 @@ Revati
 Rhombus
 Rigel
 Rigil Kentaurus
-Rosalíadecastro
+Rosaliadecastro
 Rotanev
 Ruchbah
 Rukbat
@@ -489,7 +489,7 @@ Subra
 Suhail
 Sulafat
 Syrma
-Sāmaya
+Samaya
 Tabit
 Taika
 Taiyangshou
@@ -528,7 +528,7 @@ Torcular
 Triminus
 Tuiren
 Tupi
-Tupã
+Tupa
 Tureis
 Tusizuo
 Udang
@@ -539,7 +539,7 @@ Unukalhai
 Unurgunite
 Uridim
 Uruk
-Uúba
+Uuba
 Vega
 Veritate
 Vindemiatrix
@@ -556,7 +556,7 @@ Xuange
 Yed Posterior
 Yed Prior
 Yildun
-Yunü
+Yunu
 Yuyu
 Zaniah
 Zaurak
