@@ -63,7 +63,7 @@
       <interactionClass>
          <name>HLAinteractionRoot</name>
          <interactionClass>
-            <name>StarHasLeftStarField</name>                         
+            <name>StarHasLeftStarField</name>
             <sharing>Publish</sharing>
             <transportation>HLAbestEffort</transportation>
             <order>TimeStamp</order>
