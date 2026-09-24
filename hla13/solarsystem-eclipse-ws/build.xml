@@ -22,7 +22,7 @@
     
    <!-- Compiles the java code -->
    <target name="compile" depends="clean, makedir">
-      <javac srcdir="${src.dir}" destdir="${build.dir}" source="17" target="17" debuglevel="${debuglevel}">
+      <javac srcdir="${src.dir}" destdir="${build.dir}" source="11" target="11" debuglevel="${debuglevel}">
          <classpath>
             <pathelement location="./lib/hla13_fom_objs.jar"/>
             <pathelement location="C:\rtis_D39\lib\win64_vc++-14.0\rtis13.jar"/>
