@@ -64,6 +64,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JScrollPane;
+import javax.swing.SwingUtilities;
+import java.lang.reflect.InvocationTargetException;
 import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
@@ -562,7 +564,8 @@ public class SampleViewerGUI implements ActionListener {
       outline.getSelectionModel().addListSelectionListener(
             listSelectionListener);
 
-      symbolRowModel = new SymbolRowModel();
+      if (symbolRowModel == null)
+         symbolRowModel = new SymbolRowModel();
       symbolRowModel.setSymbolMap(oricSymMap);
       oricSymMapCount = oricSymMap.getSymbolCount();
 
@@ -655,11 +658,87 @@ public class SampleViewerGUI implements ActionListener {
       } else {
          // Update model to new symbol map
          symbolRowModel.setSymbolMap(newOricSymMap);
+         outline.setRenderDataProvider(new RenderSymbolMap(newOricSymMap));
 
          // Generate a table model event to refresh table
          TableModel tableModel = outline.getModel();
          TableModelEvent tableModelEvent = new TableModelEvent(tableModel);
          outline.tableChanged(tableModelEvent);
+      }
+   }
+
+   /**
+    * Protect or unprotect a variable's Data Value cell against user edits.
+    * Names are case-sensitive; use e.g. "radio.frequency" when a simple
+    * field name occurs more than once. Returns false if not found.
+    * Read-only settings survive tree-table model rebuilds.
+    */
+   public boolean setSymbolReadOnly(final String variableName, final boolean readOnly) {
+      final boolean[] result = new boolean[1];
+      runOnEventDispatchThread(new Runnable() {
+         @Override
+         public void run() {
+            result[0] = symbolRowModel != null
+                  && symbolRowModel.setSymbolReadOnly(variableName, readOnly);
+            if (result[0])
+               refreshTreeTableValues();
+         }
+      });
+      return result[0];
+   }
+
+   /** Update the current value of a primitive variable, including read-only ones.
+    * Returns false if the variable is absent or not primitive. */
+   public boolean updateSymbolValue(final String variableName, final String value) {
+      final boolean[] result = new boolean[1];
+      runOnEventDispatchThread(new Runnable() {
+         @Override
+         public void run() {
+            result[0] = symbolRowModel != null
+                  && symbolRowModel.updateSymbolValue(variableName, value);
+            if (result[0])
+               refreshTreeTableValues();
+         }
+      });
+      return result[0];
+   }
+
+   /** Query an entry's read-only state. */
+   public boolean isSymbolReadOnly(final String variableName) {
+      final boolean[] result = new boolean[1];
+      runOnEventDispatchThread(new Runnable() {
+         @Override
+         public void run() {
+            result[0] = symbolRowModel != null
+                  && symbolRowModel.isSymbolReadOnly(variableName);
+         }
+      });
+      return result[0];
+   }
+
+   private void refreshTreeTableValues() {
+      if (outline != null && outline.getModel() != null) {
+         TableModel model = outline.getModel();
+         outline.tableChanged(new TableModelEvent(model));
+      }
+   }
+
+   /** Complete synchronous Swing modifications on the EDT. */
+   private static void runOnEventDispatchThread(Runnable action) {
+      if (SwingUtilities.isEventDispatchThread()) {
+         action.run();
+      } else {
+         try {
+            SwingUtilities.invokeAndWait(action);
+         } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            throw new IllegalStateException("Interrupted updating tree table", e);
+         } catch (InvocationTargetException e) {
+            Throwable cause = e.getCause();
+            if (cause instanceof RuntimeException)
+               throw (RuntimeException) cause;
+            throw new IllegalStateException("Unable to update tree table", cause);
+         }
       }
    }
 
